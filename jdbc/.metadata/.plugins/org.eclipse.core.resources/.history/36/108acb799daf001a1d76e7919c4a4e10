@@ -1,0 +1,97 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+import oracle.jdbc.OracleTypes;
+
+public class SAssSurvey {
+	
+	//스캐너
+	static Scanner scan = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+//		AssSurvayResultInput();
+		
+		String openClassSeq = "1";
+		
+		openClassSurvey(openClassSeq);
+		
+	}//main
+
+	private static void AssSurvayResultInput() {
+		
+		
+	}
+	
+	private static void openClassSurvey(String openClassSeq) {
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = util.open("211.63.89.59","project","java1234");
+
+			
+			String sql = "";
+			
+			//과정 + 질문 가져오기			
+			sql =  "{ call procAssClassNQ(?,?) }";
+	
+			stat = conn.prepareCall(sql);
+			
+			stat.setString(1, openClassSeq);
+			stat.registerOutParameter(2, OracleTypes.CURSOR);
+			
+			stat.executeQuery();
+			
+			rs = (ResultSet)stat.getObject(2);
+			
+			while (rs.next()) {
+				System.out.printf("\t\t\t<%s>\n\t\t\t%s.%s\n"
+						,rs.getString("name")
+						,rs.getString("aseq")
+						,rs.getString("question"));
+				
+				// 과정 + 질문 <- 항목들 가져오기
+				sql = "{ call procAssClassCon(?,?,?,?) }";
+				
+				CallableStatement stat2 = null;
+				ResultSet rs2 = null;
+				stat2 = conn.prepareCall(sql);
+				
+				stat2.setString(1, openClassSeq);
+				stat2.setString(2, rs.getString("name"));
+				stat2.setObject(3, rs.getString("aseq"));
+				stat2.registerOutParameter(4, OracleTypes.CURSOR);
+				
+				stat2.executeQuery();
+				
+				rs2 = (ResultSet)stat2.getObject(4);
+				
+				while (rs2.next()) {
+					System.out.println("\t\t\t      " + rs2.getString("content"));
+					
+					String inNum = scan.nextLine();
+					System.out.println(inNum);
+					
+					////////////////////////////////////
+					
+					
+				}
+				System.out.println("\t\t\t--------------------------------------------------------------");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("AS_001()");
+			e.printStackTrace();
+		}
+		
+	}
+
+}

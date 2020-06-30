@@ -1,0 +1,76 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import oracle.jdbc.OracleTypes;
+
+public class testT {
+
+	public static void main(String[] args) {
+
+		insentiveView();
+	}
+
+	private static void insentiveView() {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		
+		String teacherSeq = "1";
+		
+		try {
+			
+			conn = util.open("211.63.89.59","project","java1234");
+
+			
+			String sql = "";
+			
+			//과정 + 질문 가져오기			
+			sql =  "{ call procIncentiveView(?,?,?,?) }";
+			
+			stat = conn.prepareCall(sql);
+			
+			stat.setString(1, teacherSeq);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
+			stat.registerOutParameter(3, OracleTypes.NUMBER);
+			stat.registerOutParameter(4, OracleTypes.NUMBER);
+			
+			stat.executeQuery();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.printf("\t\t\t%s번 교사의 총첨\n", teacherSeq);
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t[설문 점수]\t[취업률]\t[총점]");
+			
+			System.out.print("\t\t\t" + (int)(stat.getFloat(3) * 100));
+			System.out.print("\t" + (int)(stat.getFloat(4) * 100));
+			System.out.println("\t" + stat.getString(2));
+			System.out.println();
+			
+			System.out.println("\t\t\t현재 배점");
+			Statement stat1 = null;
+			ResultSet rs1 = null;
+			
+			stat1 = conn.createStatement();
+			rs1 = stat1.executeQuery(sql);
+			
+			sql = "select * from tblincentivepoint;";
+			
+			if(rs1.next()) {
+				System.out.println("\t\t\t" + rs1.getString("score") +"\t" + rs1.getString("employeeratio"));
+			}else {
+				System.out.println("없음");
+			}
+			
+			rs1.close();
+			stat1.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+}

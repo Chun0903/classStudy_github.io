@@ -1,0 +1,55 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+import oracle.jdbc.OracleTypes;
+
+public class testT {
+
+	public static void main(String[] args) {
+
+		insentiveView();
+	}
+
+	private static void insentiveView() {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		
+		String teacherSeq = "1";
+		
+		try {
+			
+			conn = util.open("211.63.89.59","project","java1234");
+
+			
+			String sql = "";
+			
+			//과정 + 질문 가져오기			
+			sql =  "{ call procIncentiveView(?,?,?,?) }";
+			
+			stat = conn.prepareCall(sql);
+			
+			stat.setString(1, teacherSeq);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
+			stat.registerOutParameter(3, OracleTypes.NUMBER);
+			stat.registerOutParameter(4, OracleTypes.NUMBER);
+			
+			stat.executeQuery();
+			
+			System.out.println(stat.getString(2));
+			System.out.println(stat.getInt(3));
+			System.out.println(stat.getString(4));
+			System.out.println();
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+}

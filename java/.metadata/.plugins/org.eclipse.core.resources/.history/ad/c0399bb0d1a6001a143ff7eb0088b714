@@ -1,0 +1,52 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class TeacherSubject {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		subjects();
+		
+		
+	}
+
+	private static void subjects() {
+		
+		
+	      Connection conn = null; // DB연결된 상태(세션)을 담은 객체
+	        PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
+	        
+	        try {
+	           conn = DBConnection.getConnection();
+	           for (int i = 0; i<40; i++) {
+//	           int attendPonit = makeAttendPonit();	//출결 배점
+	           int writePoint = makeWritePoint();	//필기 배점 
+	           int pracricPoint = makePracricPoint(writePoint);//실기 배점
+//	           int opensubjectseq = makeOpensubjectseq();
+	           int[] opensubjectseq = {
+						
+						1, 2, 3, 4, 5, 6, 7, 8
+						
+				};
+	           
+	           String quary = "INSERT INTO TBLPOINT(SEQ, ATTENDPOINT, WRITEPOINT, PRACTICEPOINT, OPENSUBJECTSEQ) VALUES (TBLPOINT_SEQ.NEXTVAL,\'" + 20 + "\',\'"  + writePoint + "\',\'"  + pracricPoint + "\',\'"  + opensubjectseq[i] +"\')";
+	           System.out.println(quary);
+	           pstm = conn.prepareStatement(quary);
+	            pstm.executeUpdate();
+	           }
+	           System.out.println("Insert 완료");
+	           conn.close();
+	        } catch (Exception e) {
+	           e.printStackTrace();
+	      }
+	   
+	
+	
+	}//main
+	
+	
+	
+
+}//sub

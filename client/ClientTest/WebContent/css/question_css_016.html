@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    body{
+            width: 750px;
+            margin: auto;
+            padding: 0px 10px;
+        }
+
+        #txt {
+            border-left: 3px dotted gray;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        #box {
+            border: 30px dashed #999;
+            width: 700px;
+            height: 700px;
+            position: absolute;
+            font-variant: small-caps;
+            font-weight: bold;
+            color: white;
+        }
+
+        #hh {
+            border: 15px solid #555;
+            border-radius: 50px;
+            width: 40px;
+            height: 270px;
+            margin: 30px 0px 0px 310px;
+            background-color: gold;
+            padding: 20px 0px 0px 10px;
+            transition: all 100s;
+            transition-timing-function: linear;
+            transform-origin: bottom;
+        }
+
+        #box:hover #hh {
+            transform: rotate(36000deg);
+        }
+
+        #mm {
+            border: 15px solid #555;
+            border-radius: 50px;
+            width: 40px;
+            height: 200px;
+            margin: -251px 0px 0px 310px;
+            background-color: cornflowerblue;
+            padding: 20px 0px 0px 10px;
+            transition: all 300s;
+            transition-timing-function: linear;
+            transform-origin: bottom;
+        }
+
+        #box:hover #mm {
+            transform: rotate(36000deg);
+        }
+
+
+        #ss {
+            border: 15px solid #555;
+            border-radius: 50px;
+            width: 40px;
+            height: 130px;
+            margin: -181px 0px 0px 310px;
+            background-color: tomato;
+            padding: 20px 0px 0px 10px;
+            transition: all 30000s;
+            transition-timing-function: linear;
+            transform-origin: bottom;
+        }
+
+        #box:hover #ss {
+            transform: rotate(36000deg);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>transform(rotate) + transform-origin + transition</h1>
+
+    <div id="txt">시계침을 돌리시오.</div>
+    
+    <div id="box">
+        <div id="hh">Sec</div>
+        <div id="mm">Min</div>
+        <div id="ss">Hour</div>
+    </div>
+
+    
+</body>
+</html>

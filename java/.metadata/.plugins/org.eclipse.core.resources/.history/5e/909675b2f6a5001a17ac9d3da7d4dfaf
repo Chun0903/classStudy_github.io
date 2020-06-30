@@ -1,0 +1,46 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Random;
+
+public class DBconnect {
+
+	static Random rnd;
+	
+	static {
+		rnd = new Random();
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		aaa();
+		
+		
+	}
+	
+	
+	private static void aaa() {
+	      Connection conn = null; // DB연결된 상태(세션)을 담은 객체
+	        PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
+	        
+	        try {
+	           conn = DBConnection.getConnection();
+	           
+	           
+	           
+	           String quary = "";
+	          pstm = conn.prepareStatement(quary);
+	            pstm.executeUpdate();
+	           
+	           
+	        } catch (Exception e) {
+	           e.printStackTrace();
+	      }
+	   }
+	
+	
+	
+	
+	
+	
+}

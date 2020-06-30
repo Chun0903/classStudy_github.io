@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #search{
+            height: 18px;
+            width: 300px;
+            outline: none;
+        }
+
+        #list{
+            position: absolute;
+            left: 57px;
+            top: 25px;
+            background-color: white;
+            border: 1px solid gray;
+            width: 306px;
+            /* display: none; */
+            display: block;
+        }
+
+        #list .item {
+            margin: 10px;
+        }
+
+        #main {
+            /* border: 10px solid black; */
+            width: 800px;
+            margin: 0px auto;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="main">
+        <header>
+            검색어:
+            <input type="text" id="search" autocomplete="off">
+            <input type="button" value="검색하기" id="btn">
+
+        </header>
+        <section>
+            <!-- ((h1>lorem)+(p>lorem))*5 -->
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet voluptates, inventore, alias cum aliquam voluptatem omnis accusamus iste nam, ullam dignissimos pariatur optio ratione quidem dolor itaque qui ducimus similique?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veniam aperiam doloremque pariatur magnam similique exercitationem nobis amet a, culpa ipsam eos ad distinctio voluptas explicabo minus odit eius atque.</p>
+            <h1>Possimus cumque velit accusamus? Commodi consequuntur similique repellat culpa id natus debitis perspiciatis. Ipsa, ducimus, iste illum exercitationem sit veniam culpa aliquam repellendus dicta sapiente aperiam accusantium cum doloribus excepturi.</h1>
+            <p>Inventore maxime at ut quod debitis odio, tenetur nihil quasi aliquam et excepturi sit assumenda, ducimus facere corporis sed ipsa earum iusto nemo mollitia officiis vel maiores! Voluptatum, ea ducimus.</p>
+            <h1>Veniam iusto ipsam consequuntur totam a. Distinctio dolores nostrum, expedita dolore accusantium doloremque possimus similique, labore aperiam nulla suscipit corrupti natus. Laborum itaque, eum doloremque quod dolorum aperiam fuga iure.</h1>
+            <p>Fugit aliquid debitis quibusdam quisquam totam provident impedit facere, obcaecati, nihil eligendi veniam, perspiciatis officiis itaque saepe earum iusto quis? Nisi a nihil quaerat commodi dolorem ipsam accusantium nostrum? Facilis.</p>
+            <h1>Doloribus, aliquid modi natus delectus saepe accusamus aut ab laudantium, consequatur cumque eum dolores ipsum eaque provident explicabo totam! Facilis voluptates eos omnis? Commodi, labore. Harum a temporibus placeat consequatur.</h1>
+            <p>Laudantium accusamus repellat quidem corrupti magnam, suscipit quia obcaecati deserunt et reprehenderit omnis dicta doloremque earum necessitatibus. Necessitatibus deleniti eligendi a ad itaque, adipisci totam? Dolores impedit alias asperiores delectus.</p>
+            <h1>Maxime tempore animi officiis aliquid reprehenderit voluptate aspernatur rem nobis necessitatibus magni. Porro, quis? Ea dolore doloribus ad maiores ex vitae cum, quae exercitationem repudiandae sunt alias possimus animi. Voluptate?</h1>
+            <p>Debitis quidem, laudantium mollitia ducimus omnis fugiat fugit soluta inventore. Perferendis, officia ducimus voluptatibus beatae magnam culpa commodi officiis et! Facere repudiandae fuga eius consequuntur, vero maxime ab similique delectus!</p>
+        </section>
+
+            <div id="list">
+                <div class="item">자바</div>
+                <div class="item">오라클</div>
+                <div class="item">HTML</div>
+                <div class="item">javaScript</div>
+                <div class="item">CSS</div>
+                <div class="item">JDBC</div>
+            </div>
+    </div> <!-- main -->
+
+
+</body>
+</html>

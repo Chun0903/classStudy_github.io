@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            width: 350px;
+            margin: auto;
+            padding-bottom: 300px;
+            font-variant: small-caps;
+        }
+
+        .play {
+            border: 1px solid gray;
+            border-radius: 5px;
+            width: 350px;
+            height: 150px;
+            margin-bottom: 5px;
+        }
+
+        input{
+            display: none;
+        }
+
+        .play div {
+            border-radius: 5px;
+            background-color: #eee;
+            width: 120px;
+            height: 130px;
+            font-size: 50px;
+            font-weight: bold;
+            padding: 20px 0px 0px 30px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            transform: translate(180px, -150px);
+            border-radius: 75px;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        input[type=radio]:checked + label div{
+            background-color: #FF6347;
+            color: white;
+        }
+
+        input[type=radio]:checked + label + img{
+            animation-name: key1;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes key1 {
+            from { transform: translate(180px, -150px) rotate(0deg);}
+            to { transform: translate(180px, -150px) rotate(350deg);}
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>Music</h1>
+
+    <div id="play1" class="play">
+        <input type="radio" id="rb1" name="rb">
+        <label for="rb1"><div>Play</div></label>
+        <img src="../images/lp01.png">
+    </div>
+    
+    <div id="play1" class="play">
+        <input type="radio" id="rb2" name="rb">
+        <label for="rb2"><div>Play</div></label>
+        <img src="../images/lp02.png">
+    </div>
+    
+    <div id="play1" class="play">
+        <input type="radio" id="rb3" name="rb">
+        <label for="rb3"><div>Play</div></label>
+        <img src="../images/lp03.png">
+    </div>
+    
+    <div id="play1" class="play">
+        <input type="radio" id="rb4" name="rb">
+        <label for="rb4"><div>Play</div></label>
+        <img src="../images/lp04.png">
+    </div>
+
+</body>
+</html>

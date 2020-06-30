@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            width: 690px;
+            margin: auto;
+        }
+
+        #txt {
+            border-left: 3px dotted gray;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            border-collapse: collapse;
+            width: 690px;
+            margin-bottom: 10px;
+        }
+
+        .box td {
+            border: 10px solid black;
+            padding: 0;
+            overflow: hidden;
+            width: 126px;
+            height: 126px;
+        }
+
+        /* 1 */
+        #box1 img {
+            display: block;
+            transform: translate(-126px,0px);
+            transition: all 0.5s;
+        }
+
+        #box1 td:hover img {
+            transform: translate(0px,0px);
+        }
+
+        /* 2 */
+        #box2 img {
+            display: block;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        #box2 td:hover img {
+            opacity: 100%;
+            transition-timing-function: ease-in;
+        }
+
+        /* 3 */
+        #box3 img {
+            display: block;
+            width: 0px;
+            height: 0px;
+            transition: all 0.5s;
+            transform: translate(63px,0px);
+        }
+
+        #box3 td:hover img {
+            width: 126px;
+            height: 126px;
+            transform: translate(0px,0px);
+            transition-timing-function: ease-in;
+        }
+
+        /* 4 */
+        #box4 img {
+            display: block;
+            width: 0px;
+            height: 0px;
+            transition: all 0.5s;
+            transform: translate(0px,-126px);
+        }
+
+        #box4 td:hover img {
+            width: 126px;
+            height: 126px;
+            transform: translate(0px,0px) rotate(360deg);
+            transition-timing-function: ease;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>:hover + transform + transition</h1>
+
+    <div id="txt">마우스를 올리면 반응하시오.</div>
+
+    <table id="box1" class="box">
+        <tr>
+            <td><img src="../images/rect_icon01.png"></td>
+            <td><img src="../images/rect_icon02.png"></td>
+            <td><img src="../images/rect_icon03.png"></td>
+            <td><img src="../images/rect_icon04.png"></td>
+            <td><img src="../images/rect_icon05.png"></td>
+        </tr>
+    </table>
+
+    <table id="box2" class="box">
+        <tr>
+            <td><img src="../images/rect_icon01.png"></td>
+            <td><img src="../images/rect_icon02.png"></td>
+            <td><img src="../images/rect_icon03.png"></td>
+            <td><img src="../images/rect_icon04.png"></td>
+            <td><img src="../images/rect_icon05.png"></td>
+        </tr>
+    </table>
+
+    <table id="box3" class="box">
+        <tr>
+            <td><img src="../images/rect_icon01.png"></td>
+            <td><img src="../images/rect_icon02.png"></td>
+            <td><img src="../images/rect_icon03.png"></td>
+            <td><img src="../images/rect_icon04.png"></td>
+            <td><img src="../images/rect_icon05.png"></td>
+        </tr>
+    </table>
+
+    <table id="box4" class="box">
+        <tr>
+            <td><img src="../images/rect_icon01.png"></td>
+            <td><img src="../images/rect_icon02.png"></td>
+            <td><img src="../images/rect_icon03.png"></td>
+            <td><img src="../images/rect_icon04.png"></td>
+            <td><img src="../images/rect_icon05.png"></td>
+        </tr>
+    </table>
+
+</body>
+</html>

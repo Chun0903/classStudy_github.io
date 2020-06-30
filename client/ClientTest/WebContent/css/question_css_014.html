@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            width: 1400px;
+            margin: auto;
+            padding: 0px 10px;
+        }
+
+        #txt {
+            border-left: 3px dotted gray;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            border: 1px solid black;
+            border-bottom: none;
+            width: 1400px;
+            height: 150px;
+        }
+
+        #box5{
+            border-bottom: 1px solid black;
+            margin-bottom: 30px;
+        }
+
+        .box div {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transform: translate( 0px, 48px);
+            text-align: center;
+            font-size: 65px;
+            font-weight: bold;
+        }
+
+        #box1 div { background-color:  tomato; }
+        #box2 div { background-color:  gold; }
+        #box3 div { background-color:  orange; }
+        #box4 div { background-color:  greenyellow; }
+        #box5 div { background-color:  cornflowerblue; }
+
+        #main:hover .box div{
+            transform: translate(1297px,48px) rotate(3600deg);
+            transition: all 5s;
+        }
+
+        #main:hover #box1 div{
+            transition-timing-function: linear;
+        }
+
+        #main:hover #box2 div{
+            transition-timing-function: ease;
+        }
+
+        #main:hover #box3 div{
+            transition-timing-function: ease-in-out;
+        }
+
+        #main:hover #box4 div{
+            transition-timing-function: ease-in;
+        }
+
+        #main:hover #box5 div{
+            transition-timing-function: ease-out;
+        }
+
+
+        
+
+    </style>
+</head>
+<body>
+
+    <h1>:hover + position(absolute) + transform(rotate) + transition</h1>
+
+    <div id="txt">공를 회전시키면서 우측으로 이동하시오.</div>
+
+    <div id="main">
+        <div id=box1 class="box"><div>A</div></div>
+        <div id=box2 class="box"><div>B</div></div>
+        <div id=box3 class="box"><div>C</div></div>
+        <div id=box4 class="box"><div>D</div></div>
+        <div id=box5 class="box"><div>E</div></div>
+    </div>
+    
+</body>
+</html>

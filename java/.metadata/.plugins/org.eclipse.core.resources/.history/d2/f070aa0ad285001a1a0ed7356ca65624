@@ -1,0 +1,62 @@
+package com.test.object;
+
+public class Ex23_Class_basic {
+
+	public static void main(String[] args) {
+		
+		//객체 멤버 vs 정적 멤버
+		
+		//생산된 키보드 개수 세기
+		m1();
+		
+		
+	}
+	private static void m1() {
+
+		int count = 0; //누적변수
+		
+		Keyboard k1 = new Keyboard();
+		count++;
+		Keyboard k2 = new Keyboard();
+		count++;
+		Keyboard k3 = new Keyboard();
+		count++;
+		
+		
+		System.out.println("키보드 개수 : " + count);
+	}
+}
+
+class Keyboard {
+	
+	private String model;
+	private int price;
+	
+	
+	
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+

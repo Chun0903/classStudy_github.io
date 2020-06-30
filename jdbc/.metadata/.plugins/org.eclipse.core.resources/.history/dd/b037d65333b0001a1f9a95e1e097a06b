@@ -1,0 +1,2014 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+import oracle.jdbc.OracleTypes;
+
+public class AdminClass {
+	
+	//������ȣ
+	static String SubjectNameInput = "";
+	//scan
+	static Scanner scan = new Scanner(System.in);
+	//��������seq
+	static ArrayList<String> tseq = new ArrayList<String>();
+	//���ǽ�����seq
+	static ArrayList<String> rseq = new ArrayList<String>();
+	//��������seq
+	static ArrayList<String> cseq = new ArrayList<String>();
+	//��������seq
+	static ArrayList<String> bseq = new ArrayList<String>();
+	//��������seq
+	static ArrayList<String> subseq = new ArrayList<String>();
+	//������������seq
+	static ArrayList<String> ocseq = new ArrayList<String>();
+	//������������seq
+	static ArrayList<String> osseq = new ArrayList<String>();
+
+	
+	
+	public static void main(String[] args) {
+		
+		ClassOfAdminMain();
+
+	}
+	
+	private static void ClassOfAdminMain() {
+		//������ -> �������� �� ���� ���� ���� ����������
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\t���� ���� �� ���� ���� ���� ���� ������");
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\t1. ��ü ���� ���� ���� Ȯ��");
+		System.out.println("\t\t\t2. ���� �ű� ���");
+		System.out.println("\t\t\t3. ���� ���� ���� Ȯ��");
+		System.out.println("\t\t\t4. ���� ���� ���� ����");
+		System.out.println();
+		System.out.println();
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput = scan.nextLine();
+
+		if (UserInput.equals("1")) {
+			// 1. ��ü ���� ���� ���� Ȯ��
+			CheckInfo();
+
+		} else if (UserInput.equals("2")) {
+			// 2. ���� �ű� ���
+			ClassRegister();
+
+		} else if (UserInput.equals("3")) {
+			// 3. ���� ���� ���� Ȯ��
+			CheckOpenclass();
+			
+		} else if (UserInput.equals("4")) {
+			// 4. ���� ���� ���� ����
+			UpdateOpenSubject();
+
+		} else if (UserInput.equals("5")) {
+			// 5. ���� ���� ���� ����
+			DeleteOpenSubject();
+		
+		} else if (UserInput.equals("a")) {
+			// a. �ڷΰ���
+			//AdminMain();
+		} else if (UserInput.equals("b")) {
+			// b. ó������ ����
+			//    Menu home = new Menu();
+			   
+			 // Menu.home();
+		} else {
+			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���");
+		}
+		
+	}
+
+	}
+
+	static void page3(List<String> arrayList) {
+		// 1. ��ü ���� ���� ���� Ȯ��
+        
+        //10���� ����
+       List<String[]> depart = new ArrayList<String[]>();
+       int firstindex = 0;
+       int lastindex = 10;
+       int index = 0;
+       int totalcount = arrayList.size();
+
+       while (true) {
+          // 10���� String �� �� ����
+          String[] ranking = new String[10];
+
+          for (int j = firstindex; j < lastindex; j++) {
+             if (j >= arrayList.size()) {
+                break;
+             }
+             ranking[j - (index) * 10] = arrayList.get(j);
+             }
+          depart.add(ranking);
+          
+          firstindex = firstindex + 10;
+          lastindex = lastindex + 10;
+          index++;
+
+          if (firstindex >= totalcount) {
+             break;
+          }
+       
+       }
+       
+       
+       
+       //������ �� 
+       int count = 0;
+       
+       int num = 1;
+       
+       //�������� �Ѱ��� �ִ� ���
+       if(depart.size() == 1) {
+          //ù������ �����ֱ�
+          for(int i = 0; i < depart.get(0).length; i++) {
+             if( depart.get(0)[i] != null) {
+             System.out.printf("\t\t\t%d. %s\n",i+1,depart.get(0)[i]);
+             }
+          }
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"�Ѿ �������� �����ϴ�.");
+           System.out.println("\t\t\t��������������������������");
+       }
+       else {
+       
+       //�������� �������� ���
+       while(true) {
+          
+
+           System.out.println();
+          for(int i = 0; i < 10; i++) {
+             System.out.printf("\t\t\t%d. ", num);
+             if( depart.get(count)[i] != null) {
+                System.out.printf("\t%s\t" , depart.get(count)[i]);
+             }
+             System.out.println();
+             num++;
+          }
+          //������ �ݺ�
+          System.out.println();
+          System.out.println();
+           System.out.println("\t\t\t��������������������������");
+          System.out.printf("\t\t\t"+"%d������ �Դϴ�.\n", count + 1);
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"1. ���� ������");
+          System.out.println("\t\t\t"+"2. ���� ������");
+          System.out.println();
+          System.out.println("\t\t\t"+"a. �ڷΰ���");
+          System.out.println("\t\t\t"+"b. ó�����ΰ���");
+           System.out.println("\t\t\t��������������������������");   
+          //��ȣ ����
+          Scanner scan = new Scanner(System.in);
+          System.out.print("\t\t\t"+"�Է�:  ");
+          String answer = scan.nextLine();
+          //scan.skip("\r\n"); //���� ����
+           System.out.println("\t\t\t��������������������������");
+          //����������
+          if(answer.equals("1")) {
+             //ù������ �� ���
+             if(count == 0) {
+                count = depart.size() - 1 ;
+                num = depart.size() * 10 -9;
+             } else {
+                count = count-1;
+                num -= 20;
+             }
+          } else if(answer.equals("2")){
+             //����������
+        	  
+        	 
+             
+             //������ �������� ���
+             if(count == depart.size() -1 ) {
+                count = 0;
+                num = 1;
+             } else {
+                count = count+1;
+                
+             }
+          } else if(answer.equals("a")) {
+             
+             //�ڷΰ���
+        	  ClassOfAdminMain();
+             
+          } else if(answer.equals("b")) {
+     
+             //ó������ ����
+        	   //Menu home = new Menu();
+        	   //Menu.home();
+   
+          } 
+             
+          
+          else {
+             //System.out.println("\t\t\t"+"������ ���α׷��� �����մϴ�.");
+             
+             
+             break;
+          }      }
+       
+       
+       
+       
+    } //while
+
+    }
+    
+    
+	static void page2(List<String> arrayList) {
+        //Ư����������
+        
+        //10���� ����
+       List<String[]> depart = new ArrayList<String[]>();
+       int firstindex = 0;
+       int lastindex = 10;
+       int index = 0;
+       int totalcount = arrayList.size();
+
+       while (true) {
+          // 10���� String �� �� ����
+          String[] ranking = new String[10];
+
+          for (int j = firstindex; j < lastindex; j++) {
+             if (j >= arrayList.size()) {
+                break;
+             }
+             ranking[j - (index) * 10] = arrayList.get(j);
+             }
+          depart.add(ranking);
+          
+          firstindex = firstindex + 10;
+          lastindex = lastindex + 10;
+          index++;
+
+          if (firstindex >= totalcount) {
+             break;
+          }
+       
+       }
+       
+       
+       
+       //������ �� 
+       int count = 0;
+       
+       int num = 1;
+       
+       //�������� �Ѱ��� �ִ� ���
+       if(depart.size() == 1) {
+          //ù������ �����ֱ�
+          for(int i = 0; i < depart.get(0).length; i++) {
+             if( depart.get(0)[i] != null) {
+             System.out.printf("\t\t\t%d. %s\n",i+1,depart.get(0)[i]);
+             }
+          }
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"�Ѿ �������� �����ϴ�.");
+           System.out.println("\t\t\t��������������������������");
+       }
+       else {
+       
+       //�������� �������� ���
+       while(true) {
+          
+
+           System.out.println();
+          for(int i = 0; i < 10; i++) {
+             System.out.printf("\t\t\t%d. ", num);
+             if( depart.get(count)[i] != null) {
+                System.out.printf("\t%s\t" , depart.get(count)[i]);
+             }
+             System.out.println();
+             num++;
+          }
+          //������ �ݺ�
+          System.out.println();
+          System.out.println();
+           System.out.println("\t\t\t��������������������������");
+          System.out.printf("\t\t\t"+"%d������ �Դϴ�.\n", count + 1);
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"1. ���� ������");
+          System.out.println("\t\t\t"+"2. ���� ������");
+          System.out.println("\t\t\t3. �۾� ���� �ϱ�");
+
+          System.out.println();
+          System.out.println("\t\t\t"+"a. �ڷΰ���");
+          System.out.println("\t\t\t"+"b. ó�����ΰ���");
+           System.out.println("\t\t\t��������������������������");   
+          //��ȣ ����
+          Scanner scan = new Scanner(System.in);
+          System.out.print("\t\t\t"+"�Է�:  ");
+          String answer = scan.nextLine();
+         // scan.skip("\r\n"); //���� ����
+           System.out.println("\t\t\t��������������������������");
+          //����������
+          if(answer.equals("1")) {
+             //ù������ �� ���
+             if(count == 0) {
+                count = depart.size() - 1 ;
+                num = depart.size() * 10 -9;
+             } else {
+                count = count-1;
+                num -= 20;
+             }
+          } else if(answer.equals("2")){
+             //����������
+        	  
+        	  
+             
+             //������ �������� ���
+             if(count == depart.size() -1 ) {
+                count = 0;
+                num = 1;
+             } else {
+                count = count+1;
+                
+             }
+          } else if(answer.equals("a")) {
+             
+             //�ڷΰ���
+        	  ClassOfAdminMain();
+             
+          } else if(answer.equals("b")) {
+     
+             //ó������ ����
+        	   //Menu home = new Menu();
+        	   //Menu.home();
+          }else if (answer.equals("3")) {
+        	  CheckSubjectInfo2222();
+        	  
+        	 
+          } 
+             
+          
+          else {
+             //System.out.println("\t\t\t"+"������ ���α׷��� �����մϴ�.");
+             
+             
+             break;
+          }
+          
+          
+          
+          
+       } //while
+
+       }
+       
+       
+    }
+	static void page(List<String> arrayList) {
+        
+        
+        //10���� ����
+       List<String[]> depart = new ArrayList<String[]>();
+       int firstindex = 0;
+       int lastindex = 10;
+       int index = 0;
+       int totalcount = arrayList.size();
+
+       while (true) {
+          // 10���� String �� �� ����
+          String[] ranking = new String[10];
+
+          for (int j = firstindex; j < lastindex; j++) {
+             if (j >= arrayList.size()) {
+                break;
+             }
+             ranking[j - (index) * 10] = arrayList.get(j);
+             }
+          depart.add(ranking);
+          
+          firstindex = firstindex + 10;
+          lastindex = lastindex + 10;
+          index++;
+
+          if (firstindex >= totalcount) {
+             break;
+          }
+       
+       }
+       
+       
+       
+       //������ �� 
+       int count = 0;
+       
+       int num = 1;
+       
+       //�������� �Ѱ��� �ִ� ���
+       if(depart.size() == 1) {
+          //ù������ �����ֱ�
+          for(int i = 0; i < depart.get(0).length; i++) {
+             if( depart.get(0)[i] != null) {
+             System.out.printf("\t\t\t%d. %s\n",i+1,depart.get(0)[i]);
+             }
+          }
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"�Ѿ �������� �����ϴ�.");
+           System.out.println("\t\t\t��������������������������");
+       }
+       else {
+       
+       //�������� �������� ���
+       while(true) {
+          
+
+           System.out.println();
+          for(int i = 0; i < 10; i++) {
+             System.out.printf("\t\t\t%d. ", num);
+             if( depart.get(count)[i] != null) {
+                System.out.printf("\t%s\t" , depart.get(count)[i]);
+             }
+             System.out.println();
+             num++;
+          }
+          //������ �ݺ�
+          System.out.println();
+          System.out.println();
+           System.out.println("\t\t\t��������������������������");
+          System.out.printf("\t\t\t"+"%d������ �Դϴ�.\n", count + 1);
+           System.out.println("\t\t\t��������������������������");
+          System.out.println("\t\t\t"+"1. ���� ������");
+          System.out.println("\t\t\t"+"2. ���� ������");
+          System.out.println("\t\t\t"+"3. �۾� ���� �ϱ�");
+          System.out.println();
+          System.out.println("\t\t\t"+"a. �ڷΰ���");
+          System.out.println("\t\t\t"+"b. ó�����ΰ���");
+           System.out.println("\t\t\t��������������������������");   
+          //��ȣ ����
+          Scanner scan = new Scanner(System.in);
+          System.out.print("\t\t\t"+"�Է�:  ");
+          String answer = scan.nextLine();
+         // scan.skip("\r\n"); //���� ����
+           System.out.println("\t\t\t��������������������������");
+          //����������
+          if(answer.equals("1")) {
+             //ù������ �� ���
+             if(count == 0) {
+                count = depart.size() - 1 ;
+                num = depart.size() * 10 -9;
+             } else {
+                count = count-1;
+                num -= 20;
+             }
+          } else if(answer.equals("2")){
+             //����������
+             
+             //������ �������� ���
+             if(count == depart.size() -1 ) {
+                count = 0;
+                num = 1;
+             } else {
+                count = count+1;
+                
+             }
+          } else if(answer.equals("a")) {
+             
+             //�ڷΰ���
+        	  ClassOfAdminMain();
+             
+          } else if(answer.equals("b")) {
+     
+             //ó������ ����
+        	   //Menu home = new Menu();
+        	   //Menu.home();
+          } else if(answer.equals("3")) {
+        	  CheckSelectSubJejct222();
+          }
+             
+          
+          else {
+             //System.out.println("\t\t\t"+"������ ���α׷��� �����մϴ�.");
+             
+             
+             break;
+          }
+          
+          
+          
+          
+       } //while
+
+       }
+       
+       
+    }
+	private static void DeleteOpenSubject() {
+		// 5. �������� ����
+
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		
+		//����Ʈ ���
+		try {
+
+			String Sql = "{ call proSubjectInfomation(?) }";
+			
+			conn = util.open();
+			stat= conn.prepareCall(Sql);
+			
+			stat.registerOutParameter(1, OracleTypes.CURSOR);
+
+			stat.executeQuery();
+
+			rs = (ResultSet) stat.getObject(1);
+			System.out.println("����������������������������������������������������������������������������������������");
+			System.out.println("[��ȣ]\t[������]\t\t\t\t\t\t[�����Ⱓ]\t\t[���ǽǸ�]\t[���������]\t[����������ο�]");
+			System.out.println("����������������������������������������������������������������������������������������");
+			
+			while (rs.next()) {
+				System.out.printf("%s\t%s\t%s - %s\t%s\t\t%s\t%s\n", 
+								rs.getString("��ȣ"), 
+								rs.getString("����������"),
+								rs.getString("���۳�¥"), 
+								rs.getString("��������¥"), 
+								rs.getString("���ǽǸ�"), 
+								rs.getString("��������"),
+								rs.getString("����������ο�"));
+			}
+
+		} catch (Exception e) {
+			System.out.println("DeleteOpenSubject()���� �����߻�");
+			e.printStackTrace();
+		}
+		
+		  
+		//������ �׸� ��� 
+	  try { 
+		Statement stat1 = null;
+	  	System.out.println();
+		System.out.print("���� �� ������ ��ȣ�� �Է����ּ��� : ");
+		String DeleteNumInput = scan.nextLine();
+		
+		
+		String Deletesql = String.format("Delete from tblSubject where seq = %s",DeleteNumInput);
+
+		stat1 = conn.createStatement();
+		stat1.executeUpdate(Deletesql);
+
+
+
+			System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+			System.out.println("\t\t\t��������������������������");
+			System.out.println("\t\t\ta.�ڷΰ���");
+			System.out.println("\t\t\tb.ó������ ����");
+			System.out.println("\t\t\t��������������������������");
+			System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+			String UserInput2 = scan.nextLine();
+
+			if (UserInput2.equals("a")) {
+				// �ڷΰ��� 
+				ClassOfAdminMain();
+
+			} else if (UserInput2.equals("b")) {
+				// ó������ ����
+				//    Menu home = new Menu();
+				   
+				//  Menu.home();
+
+			} else {
+				System.out.println("�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+			}
+	  		} catch (Exception e) {
+			System.out.println("DeleteOpenSubject()���� �����߻�");
+			e.printStackTrace();
+		}
+	}
+
+	private static void UpdateOpenSubject() {
+		// ���� ���� ����
+
+		// Ư�� ���� ���� ���	
+		Connection conn = null;
+        CallableStatement stat = null;
+        ResultSet rs = null;
+        DBUtil util = new DBUtil();
+
+		try {
+			
+		  conn = util.open();
+		  
+		  	Statement stat1 = null;
+	  
+		  	System.out.println();
+			System.out.println("\t\t\t1. ������");
+			System.out.println("\t\t\t2. ���� ���� ��");
+			System.out.println("\t\t\t3. ���� ���� ��");
+			System.out.println("\t\t\t4. ���ǽǸ�");
+			System.out.println("\t\t\t5. ���� �����");
+			System.out.println();
+			System.out.println();
+			System.out.println("\t\t\ta. �ڷΰ���");
+			System.out.println("\t\t\tb. ó������ ����");
+			System.out.println("\t\t\t��������������������������");
+			System.out.print("\t\t\t������ ����� ��ȣ�� �Է����ּ��� : ");
+			String UpdateUserInput2 = scan.nextLine();
+
+			if (UpdateUserInput2.equals("1")) {
+				System.out.println();
+				
+				ClassList();
+				System.out.println("\t\t\t��������������������������");
+				System.out.print("\t\t\t������ ���� ���� ��ȣ�� �Է����ּ��� : ");
+				String ClassNumInput = scan.nextLine();
+				System.out.print("\n\t\t\t������ ���� ���� �̸��� �Է����ּ��� : ");
+				String ClassNameInput = scan.nextLine();
+
+				conn = util.open();
+				
+				
+				String Updatesql1 = String.format("update tblClass set name = '%s' where seq = %s",ClassNameInput, ClassNumInput);
+				stat1 = conn.createStatement();
+				stat1.executeUpdate(Updatesql1);
+				System.out.println("\t\t\t��������������������������");
+				System.out.println();
+				System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+				stat1.close();
+				conn.close();
+
+			} else if (UpdateUserInput2.equals("2")) {
+				
+				Statement stat2 = null;
+				System.out.println();
+			
+				OpenClassList();
+				System.out.println("\t\t\t��������������������������");
+				System.out.print("\t\t\t������ ���� ���� ��ȣ�� �Է����ּ��� : ");
+				String startdateInput = scan.nextLine();
+				
+				System.out.println("\t\t\t���� ������ �Է����ּ���.");
+				System.out.print("\n\t\t\t���� ���� ��(YY/MM/DD) : ");
+				String ClassStartDate = scan.nextLine();
+
+				conn = util.open();
+				String Updatesql2 = String.format("update tblOpenclass set startdate = '%s'  where seq = %s",ClassStartDate, startdateInput);
+				stat2 = conn.createStatement();
+				stat2.executeUpdate(Updatesql2);
+	
+				System.out.println("\t\t\t��������������������������");
+				System.out.println();
+				System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+				stat2.close();
+				conn.close();
+
+			} else if (UpdateUserInput2.equals("3")) {
+				
+				Statement stat3 = null;
+				System.out.println();
+			
+				OpenClassList();
+				System.out.println("\t\t\t��������������������������");
+				System.out.print("\t\t\t������ ���� ���� ��ȣ�� �Է����ּ��� : ");
+				String enddateInput = scan.nextLine();
+				
+				System.out.print("\n\t\t\t���� ���� ��(YY/MM/DD):");
+				String ClassEndDate = scan.nextLine();
+				conn = util.open();
+			
+				String Updatesql3 = String.format("update tblOpenclass set enddate = '%s' where seq = %s ",ClassEndDate, enddateInput);
+				stat3 = conn.createStatement();
+				stat3.executeUpdate(Updatesql3);
+				System.out.println("\t\t\t��������������������������");
+				System.out.println();
+				System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+				stat3.close();
+				conn.close();
+
+			} else if (UpdateUserInput2.equals("4")) {
+				
+				Statement stat4 = null;
+				System.out.println();
+				
+				Roomlist();
+				System.out.println("\t\t\t��������������������������");
+				System.out.print("\t\t\t������ ���ǽ� ��ȣ�� �Է����ּ��� : ");
+				String RoomNumbInput = scan.nextLine();
+				
+				System.out.print("\n\t\t\t���ǽ� �� :");
+				String ClassRoomInput = scan.nextLine();
+				conn = util.open();
+			
+				String Updatesql4 = String.format("update tblroom set name = '%s' where seq = %s",ClassRoomInput, RoomNumbInput);
+				stat4 = conn.createStatement();
+				stat4.executeUpdate(Updatesql4);
+				System.out.println("\t\t\t��������������������������");
+				System.out.println();
+				System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+			
+				stat4.close();
+				conn.close();
+
+			} else if (UpdateUserInput2.equals("5")) {
+				
+				Statement stat5 = null;
+				System.out.println();
+		
+				SubjectList();
+				System.out.println("\t\t\t��������������������������");
+				System.out.print("\t\t\t������ ���� ���� ��ȣ�� �Է����ּ��� : ");
+				String SubNumInput = scan.nextLine();
+				System.out.print("\n\t\t\t���� ���� �� :");
+				String SubjectNameInput = scan.nextLine();
+				conn = util.open();
+	
+				String Updatesql5 = String.format("update tblSubject set name = '%s' where seq = %s", SubjectNameInput, SubNumInput);
+				stat5 = conn.createStatement();
+				stat5.executeUpdate(Updatesql5);
+				System.out.println("\t\t\t��������������������������");
+				System.out.println();
+				System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+				stat5.close();
+				conn.close();
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ReviseSubjectInfo() ������� ���� �߻�");
+		}
+
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput4 = scan.nextLine();
+
+		if (UserInput4.equals("a")) {
+			// �ڷΰ��� 
+			ClassOfAdminMain();
+			
+		} else if (UserInput4.equals("b")) {
+			// ó������ ����
+			//  Menu home = new Menu();
+			   
+			  // Menu.home();
+
+		} else {
+			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+		}
+
+	}
+
+	private static void NewResisterSubject() {
+		// 3-2. ���� ���� �ű� ��� ������
+		
+		DBUtil util = new DBUtil();
+	    ResultSet rs = null;
+	  
+	    
+	    try {
+	    	 String SubjectSql1 = "insert into tblSubject(seq,name,type,subjectPeriod,bookSeq) values (tblSubject_seq.nextVal, ?, ?, ? ,?)";
+	 	     String OpenSubjectSql1 = "insert into tblOpenSubject(seq,startDate,endDate,OpenClassSeq,subjectSeq) values (tblOpenSubject_seq.nextVal, ?, ?, ? ,?)";
+	 	    
+	 	   Connection conn = null;
+	 	    
+	    	//�������� �Է�
+			PreparedStatement stat0 = null;
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t �ű� ���� ����  �߰� �������Դϴ�.");
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t�Ʒ� ������ �Է����ּ���.");
+			System.out.print("\t\t\t1. ���� ����� : ");
+			String SubjectNameInput = scan.nextLine();
+			System.out.print("\t\t\t2. ���� ���� : ");
+			String SubjectTypeInput = scan.nextLine();
+			System.out.println("\t\t\t3. �����Ⱓ : ");
+			String SubjectPeriodInput = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���� �����Դϴ�.");
+			BookList();
+			System.out.print("\t\t\t4. �����ȣ : ");
+			String BookSeq = scan.nextLine();
+			stat0 = conn.prepareStatement(SubjectSql1);
+			stat0.setString(1, SubjectNameInput); //���������
+			stat0.setString(2, SubjectTypeInput); //��������
+			stat0.setString(3, SubjectPeriodInput); //�����Ⱓ
+			stat0.setString(4, BookSeq); //�����ȣ
+			
+			//�������� �Է�
+			PreparedStatement stat1 = null;
+			System.out.print("\t\t\t5. ���� ���� ��(YY/MM/DD) : ");
+			String ClassStartDayInput = scan.nextLine();
+			System.out.print("\t\t\t6. ���� ���� ��(YY/MM/DD) : ");
+			String ClassEndDayInput = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���������Ⱓ�Դϴ�.");
+			OpenClassList();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t7. �������� ��ȣ : ");
+			String OpenSubjectSeq = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���� ���������Դϴ�.");
+			SubjectList();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t8. �������� ��ȣ : ");
+			String OpenClassSeq = scan.nextLine();
+			stat1 = conn.prepareStatement(OpenSubjectSql1);
+			stat1.setString(1, ClassStartDayInput); //���������
+			stat1.setString(2, ClassEndDayInput); //����������
+			stat1.setString(3, OpenSubjectSeq); //����������ȣ
+			stat1.setString(4, OpenClassSeq); //���������ȣ
+			
+
+//			Calendar startdate = Calendar.getInstance();
+//			startdate.set(ClassStartDayInput.substring(0,1),
+//						  ClassStartDayInput.substring(3,1),
+//						  ClassStartDayInput.substring(6,1));
+//			
+//			long start = startdate.getTimeInMillis();
+//			Calendar enddate = Calendar.getInstance();
+//			
+//			enddate.set(ClassEndDayInput.substring(0,1),
+//						ClassEndDayInput.substring(3,1),
+//						ClassEndDayInput.substring(6,1));
+//			long end = startdate.getTimeInMillis();
+			
+			
+	    	
+			// ����κ�
+			System.out.println("\t\t\t�ű� ������ ��� �Ϸ� �Ǿ����ϴ�.");
+			System.out.println();
+
+			stat0.close();
+			stat1.close();
+			conn.close();
+
+		} catch (Exception e) {
+			System.out.println("ClassRegister()���� �����߻�");
+			e.printStackTrace();
+		}
+
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput = scan.nextLine();
+
+		if (UserInput.equals("a")) {
+			// �ڷΰ���
+			ClassOfAdminMain();
+			
+		} else if (UserInput.equals("b")) {
+			// ó������ ����
+			//    Menu home = new Menu();
+			   
+			 //  Menu.home();
+
+		} else {
+			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+		
+		}
+		
+	}
+	
+
+	private static void CheckOpenclass() {
+		// 3. ���� ���� ���� Ȯ��
+
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		ArrayList <String> list = new ArrayList<String>();
+		
+		try {
+
+			String Sql = "{ call proSubjectInfomation(?) }";
+			
+			conn = util.open();
+			stat= conn.prepareCall(Sql);
+			
+			stat.registerOutParameter(1, OracleTypes.CURSOR);
+
+			stat.executeQuery();
+
+			rs = (ResultSet) stat.getObject(1);
+			System.out.println("\t\t\t����������������������������������������������������������������������������������������");
+			System.out.println("\t\t\t[No.]\t[��ȣ]\t[������]\t\t\t\t\t\t[�����Ⱓ]\t\t[���ǽǸ�]\t[���������]\t[����������ο�]");
+			System.out.println("\t\t\t����������������������������������������������������������������������������������������");
+			
+			
+			while (rs.next()) { list.add(rs.getString("��ȣ")+"\t"+rs.getString("����������")+"\t"+rs.getString("���۳�¥")+"~"+rs.getString("��������¥")
+								+"\t"+rs.getString("���ǽǸ�")+"\t" + rs.getString("��������") + "\t"+rs.getString("����������ο�"));
+			}
+
+			page(list);
+			
+		} catch (Exception e) {
+			System.out.println("CheckOpenSubject()���� �����߻�");
+			e.printStackTrace();
+		}
+		
+	}
+	private static void CheckSelectSubJejct222() {
+		
+	
+		  System.out.println("\t\t\t��������������������������");
+	 		System.out.println("\t\t\t1. Ư�� ���� ���λ��� Ȯ���ϱ� ");
+	 		System.out.println("\t\t\t2. ���� ���� ���� Ȯ���ϱ�");
+	 		System.out.println("\t\t\t3. ���� ���� �ű� ����ϱ� ");
+	 		System.out.println();
+	 		System.out.println();
+	 		System.out.println("\t\t\ta. �ڷΰ���");
+	 		System.out.println("\t\t\tb. ó������ ����");
+	 		System.out.println("\t\t\t��������������������������");
+	 		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+	 		String UserInput6 = scan.nextLine();
+
+	 		if (UserInput6.equals("1")){
+	 			//1. Ư�� ���� ���λ��� Ȯ���ϱ�
+	 			CheckSelectSubject();
+	 			
+	 		} else if (UserInput6.equals("2")) {
+	 			//2. ���� ���� ���� Ȯ���ϱ�
+	 			CheckSubjectInfo();
+	 			
+	 		} else if (UserInput6.equals("3")) {
+	 			//3. ���� ���� �ű� ����ϱ� 
+	 			NewResisterSubject();
+	 			
+	 		} else if (UserInput6.equals("a")) {
+	 			// �ڷΰ��� -> admin 1�� ����
+	 			ClassOfAdminMain();
+	 		} else if (UserInput6.equals("b")) {
+	 			// ó������ ����
+	 			//Menu home = new Menu();
+	 		   
+	 		   //Menu.home();
+	 		
+	 		} else {
+	 			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+	 			
+	 		
+	 		}
+		
+	}
+	private static void CheckSelectSubject() {
+		// Ư�� ���� ���� Ȯ�� ������
+		 Connection conn = null;
+         CallableStatement stat = null;
+         ResultSet rs = null;
+         DBUtil util = new DBUtil();
+		
+       
+  
+         // Ư�� ���� ���� ���
+		System.out.print("\t\t\t��ȸ�� ��ȣ�� �Է����ּ��� : ");
+		SubjectNameInput = scan.nextLine();
+		
+		try {
+			
+		  conn = util.open();
+		  
+		  Statement stat1 = null;
+          ResultSet rs1 = null;
+          
+          stat1 = conn.createStatement();
+		  String sql = String.format("select distinct * from vwChoiceClass where �����ȣ = %s", SubjectNameInput);
+			
+		  rs1 = stat1.executeQuery(sql);
+		
+		  while(rs1.next()) {
+				System.out.printf("\t\t\t" + "[�����ȣ] : %s\n\t\t\t[�����] : %s\n\t\t\t[����Ⱓ] : %s ~ %s\n\t\t\t[�����] : %s\n\t\t\t[�����]: %s\n", 
+						rs1.getString("�����ȣ"),
+						rs1.getString("�����"), 
+						rs1.getString("������"),
+						rs1.getString("������"), 
+						rs1.getString("�����"), 
+						rs1.getString("�����"));
+
+			}
+
+
+         Statement stat2 = null;
+         ResultSet rs2 = null;
+         
+		//����������
+        System.out.println();
+		System.out.println("\t\t\t" + "[��������ȣ]\t[������ ��]\t[�ֹι�ȣ���ڸ�]\t[��ȭ��ȣ]\t[�����]\t\t[����]\t[���ᳯ¥]");
+		
+		stat2 = conn.createStatement();
+        String sql2 = "select * from vwChoiceStudent where �����ȣ = " + SubjectNameInput;
+      
+        rs2 = stat1.executeQuery(sql2);
+        
+        while (rs2.next()) {
+           System.out.printf("\t\t\t" + "%s\t\t%s\t\t%s\t%s\t\t%s\t%s\t%s\n"        
+                 ,rs2.getString("��������ȣ")
+                 ,rs2.getString("�������̸�")
+                 ,rs2.getString("�ֹι�ȣ���ڸ�")
+                 ,rs2.getString("��ȭ��ȣ")
+                 ,rs2.getString("�����")
+                 ,rs2.getString("������ߵ�Ż��")
+           		 ,rs2.getString("���ᳯ¥"));
+        }
+
+        stat2.close();
+        conn.close();
+		
+		} catch (Exception e) {
+			 e.printStackTrace();
+		System.out.println("CheckSelectSubject()���� �߻�");
+		}
+		System.out.println();
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\t1. ���ᳯ¥ �Է�");
+		System.out.println();
+		System.out.println();
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput3 = scan.nextLine();
+
+		if (UserInput3.equals("1")) {
+			// 1. ���ᳯ¥ �Է�
+			CompletionDate();
+
+		} else if (UserInput3.equals("a")) {
+			//�ڷΰ���
+			CheckSelectSubJejct222();
+		} else if (UserInput3.equals("b")) {
+			//ó�����ΰ���
+			//Menu home = new Menu();
+			   
+			// Menu.home();
+		} else {
+			System.out.println("�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+		}
+		}
+	
+	private static void CheckSubjectInfo2222() {
+		
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\t1.���� ���� �����ϱ�");
+		System.out.println();
+		System.out.println();
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");	
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput = scan.nextLine();
+
+		if (UserInput.equals("1")) {
+			// 1.���� ���� �����ϱ�
+			ReviseSubjectInfo();
+
+		} else if (UserInput.equals("2")) {
+			//2.���� ���� �����ϱ�
+			DeleteSubjectInfo();
+
+		} else if (UserInput.equals("a")) {
+			// �ڷΰ��� - > Ư�� ���� ���� Ȯ�� ������
+			CheckSelectSubJejct222();
+
+		} else if (UserInput.equals("b")) {
+			// ó������ ����
+			//  Menu home = new Menu();
+			// Menu.home();
+
+		} else {
+			System.out.println("�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���");
+		}
+		
+	}
+	private static void CheckSubjectInfo() {
+		// 3-3 ���� ���� ���� Ȯ��
+
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		ArrayList<String> list2 = new ArrayList<String>();
+		try {
+
+			String sql = "{ call ProvwOSInfo(?) }";
+
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+
+			stat.registerOutParameter(1, OracleTypes.CURSOR);
+
+			stat.executeQuery();
+
+			rs = (ResultSet) stat.getObject(1);
+
+			System.out
+					.println("\t\t\t����������������������������������������������������������������������������������������������������������������������������������������");
+			System.out
+					.println("\t\t\t[No.]\t[��ȣ]\t[������]\t\t\t\t\t\t\t[�����Ⱓ]\t\t[���ǽ�]\t[�����]\t\t\t[����Ⱓ]\t\t[�����]\t\t\t[�����]");
+			System.out
+					.println("\t\t\t����������������������������������������������������������������������������������������������������������������������������������������");
+			while (rs.next()) { list2.add(rs.getString("��ȣ") +"\t"+ rs.getString("������") + "\t\t" + rs.getString("�����Ⱓ") +"\t"+rs.getString("���ǽǸ�")+"\t"+ rs.getString("�����")+"\t\t"+rs.getString("����Ⱓ") +"\t"+ rs.getString("�����")+"\t"+ rs.getString("�����"));
+		
+			}
+			page2(list2);
+		} catch (Exception e) {
+			System.out.println("CheckSubjectInfo()���� �����߻�");
+			e.printStackTrace();
+		}
+		
+
+	}
+
+	private static void DeleteSubjectInfo() {
+		// 3-3-2.���� ���� �����ϱ�
+
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+
+		String Deletesql = "Delete tblOpenSubject where seq = ?"; 
+
+		try {
+
+			conn = util.open();
+			stat = conn.prepareCall(Deletesql);
+			System.out.println("\t\t\t������ ��ȣ�� �Է����ּ���");
+			System.out.print("\t\t\t�Է� : ");
+			String DeleteUserInput = scan.nextLine();
+
+			stat.setString(1, DeleteUserInput);
+
+			System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+			System.out.println("\t\t\t��������������������������");
+			System.out.println("\t\t\ta. �ڷΰ���");
+			System.out.println("\t\t\tb. ó������ ����");
+			System.out.println("\t\t\t��������������������������");
+			System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+			String UserInput2 = scan.nextLine();
+
+			if (UserInput2.equals("a")) {
+				// �ڷΰ��� -> ��ü ���� ���� ���� ������
+				CheckSubjectInfo();
+
+			} else if (UserInput2.equals("b")) {
+				// ó������ ����
+				// Menu home = new Menu();
+				// Menu.home();
+
+			} else {
+				System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+			}
+
+		} catch (Exception e) {
+			System.out.println("DeleteSubjectInfo()���� �����߻�");
+		} finally {
+			try {
+				stat.close();
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+	}
+
+	private static void ReviseSubjectInfo() {
+		//���� ���� �����ϱ�
+		
+		Connection conn = null;
+        
+        ResultSet rs = null;
+        DBUtil util = new DBUtil();
+	
+		try {
+		Statement stat = null;
+		conn = util.open();
+		System.out.println("\t\t\t1. �����");
+		System.out.println("\t\t\t2. ���� ���� ��");
+		System.out.println("\t\t\t3. ���� ���� ��");
+		System.out.println("\t\t\t4. �����");
+		System.out.println("\t\t\t5. �����");
+		
+		
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput = scan.nextLine();
+
+	if (UserInput.equals("1")) {
+		// 1.����� ����
+		System.out.println("\t\t\t���� ���� ����Դϴ�.");
+		System.out.println("\t\t\t��������������������������");
+		SubjectList();
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t������ ���� ���� ��ȣ�� �Է����ּ��� : ");
+		String SubjectNumInput = scan.nextLine();
+		System.out.print("\n\t\t\t���� ������ �Է����ּ��� : ");
+		String SubjectNameInput = scan.nextLine();
+		
+		conn = util.open();
+		
+		String Updatesql3 = String.format("update tblSubject set name = '%s' where seq = %s ",SubjectNameInput, SubjectNumInput);
+
+		stat = conn.createStatement();
+		stat.executeUpdate(Updatesql3);
+
+		System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+		stat.close();
+		conn.close();
+		
+	} else if (UserInput.equals("2")) {
+		// 2. ���� ���� ��
+		Statement stat0 = null;
+		System.out.println("\t\t\t���� ���� ����Դϴ�.");
+		System.out.println("\t\t\t��������������������������");
+		OpenSubjectList();
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t������ ���� ���� ������ ��ȣ�� �Է����ּ��� : ");
+		String SubjectNumInput = scan.nextLine();
+		System.out.print("\n\t\t\t���� ���� ��(YY/MM/DD) : ");
+		String SubjectStartDateInput = scan.nextLine();
+
+		
+		conn = util.open();
+		
+		String Updatesql3 = String.format("update tblOpenSubject set startdate = '%s' where seq = %s ",SubjectStartDateInput, SubjectNumInput);
+
+		stat0 = conn.createStatement();
+		stat0.executeUpdate(Updatesql3);
+
+		System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+		stat0.close();
+		conn.close();
+		
+	} else if (UserInput.equals("3")) {
+		// 3. ���� ���� ��
+		Statement stat1 = null;
+		System.out.println("\t\t\t���� ���� ����Դϴ�.");
+		System.out.println("\t\t\t��������������������������");
+		OpenSubjectList();
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t������ ���� ���� ������ ��ȣ�� �Է����ּ��� : ");
+		String SubjectEnddateinput = scan.nextLine();
+		System.out.print("\n\t\t\t���� ���� ��(YY/MM/DD) : ");
+		String SubjectEndDateInput = scan.nextLine();
+		
+		conn = util.open();
+		
+		String Updatesql3 = String.format("update tblSubject set enddate = '%s' where seq = %s ",SubjectEndDateInput, SubjectEnddateinput);
+	
+		stat1 = conn.createStatement();
+		stat1.executeUpdate(Updatesql3);
+
+		System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+		stat1.close();
+		conn.close();
+		
+		
+	} else if (UserInput.equals("4")) {
+		// 4. �����
+		Statement stat2 = null;
+		System.out.println("\t\t\t���� ���� ����Դϴ�.");
+		System.out.println("\t\t\t��������������������������");
+		BookList();
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t������ �����ȣ�� �Է����ּ��� : ");
+		String BookSeqInput = scan.nextLine();
+		System.out.print("\n\t\t\t����� : ");
+		String BookNameInput = scan.nextLine();
+		
+		conn = util.open();
+		
+		String Updatesql3 = String.format("update tblbook set name = '%s' where seq = %s ",BookNameInput, BookSeqInput);
+	
+		System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+		
+		stat2 = conn.createStatement();
+		stat2.executeUpdate(Updatesql3);
+		
+		stat2.close();
+		conn.close();
+		
+	} else if (UserInput.equals("5")) {
+		// 5. �����
+		Statement stat3 = null;
+		System.out.println("\t\t\t���� ���� ����Դϴ�.");
+		System.out.println("\t\t\t��������������������������");
+		tlist();
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t������ �����ȣ�� �Է����ּ��� : ");
+		String TeacherSeqInput = scan.nextLine();
+		System.out.print("\n\t\t\t����� : ");
+		String TeacherNameInput = scan.nextLine();
+	
+		conn = util.open();
+		
+		String Updatesql3 = String.format("update tblteacher set name = '%s' where seq = %s ",TeacherNameInput, TeacherSeqInput);
+		
+		stat3 = conn.createStatement();
+		stat3.executeUpdate(Updatesql3);
+
+		System.out.println("\t\t\t���� �Ϸ�Ǿ����ϴ�.");
+
+		stat3.close();
+		conn.close();
+		}
+		} catch (Exception e) {
+		}
+		
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput4 = scan.nextLine();
+
+		if (UserInput4.equals("a")) {
+			// �ڷΰ��� 
+			CheckSubjectInfo2222();
+		} else if (UserInput4.equals("b")) {
+			// ó������ ����
+			//  Menu home = new Menu();
+			   
+			  // Menu.home();
+
+		} else {
+			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+		}
+	}
+
+	private static void CompletionDate() {
+		// Ư�� ���� ���� ���ᳯ¥ �Է� ������
+		
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		CallableStatement stat2 = null;
+		
+
+		try {
+
+			System.out.print("\t\t\t������ ��ȣ : ");
+			String studentSeq = scan.nextLine();
+			
+			System.out.print("\t\t\t���ᳯ¥(YY/MM/DD): ");
+			String CompletionInput = scan.nextLine();
+
+			conn = util.open();
+			
+			String sql = "{call procDate(?,?,?)}";
+			
+			stat2 = conn.prepareCall(sql);
+			
+			stat2.setString(1, studentSeq);
+			stat2.setString(2, SubjectNameInput);
+			stat2.setString(3, CompletionInput);
+	
+			stat2.executeUpdate();
+
+			System.out.println("\t\t\t���ᳯ¥ �Է� �Ϸ�Ǿ����ϴ�.");
+			System.out.println("\t\t\t��������������������������");
+			System.out.println("\t\t\ta. �ڷΰ���");
+			System.out.println("\t\t\tb. ó������ ����");
+			System.out.println("\t\t\t��������������������������");
+			System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+			String UserInput2 = scan.nextLine();
+
+			if (UserInput2.equals("a")) {
+				// �ڷΰ��� -> ��ü ���� ���� ���� ������
+				CheckInfo();
+
+			} else if (UserInput2.equals("b")) {
+				// ó������ ����
+				// Menu home = new Menu();
+			   // Menu.home();
+
+			} else {
+				System.out.println("�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+			}
+
+		} catch (Exception e) {
+			//System.out.println("CompletionDate()���� ���� �߻�");
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				stat2.close();
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+	}
+	private static void OpenSubjectList() {
+		
+		//��������Ʈ
+	  Connection conn = null;
+	  CallableStatement stat = null;
+	  ResultSet rs = null;
+	  DBUtil util = new DBUtil();      
+	  
+	  osseq.clear();
+	  
+	  try {
+	     //����Ʈ ����
+	     
+	     //���ν��� �θ���
+	     String sql = "{ call  ProvwChoiceClass(?) }";
+
+	     //open
+	     conn = util.open();
+	     stat = conn.prepareCall(sql);
+	     
+	     //Ŀ���θ���
+	     stat.registerOutParameter(1, OracleTypes.CURSOR);
+	     
+	     //��¿�û
+	     stat.executeQuery();
+	     
+	     //��°� ���
+	     rs = (ResultSet)stat.getObject(1);
+	     
+	     System.out.println();
+	     System.out.println("\t\t\t�����������������������������������������������");
+	     System.out.println("\t\t\t" + "<���� ���>");
+	     System.out.println("\t\t\t�����������������������������������������������");
+	     
+	     System.out.println("\t\t\t[��ȣ]\t[���������]\t[����������]\t[�����]");
+	     
+	     //���
+	     while (rs.next()) {
+	        System.out.println("\t\t\t--------------------------------------------------------------");
+	        System.out.printf("\t\t\t%s\t%s\t%s\t%s\n"
+	              ,rs.getString("�����ȣ")
+	              ,rs.getString("������")
+	        	  ,rs.getString("������")
+	        	  ,rs.getString("�����"));
+	       // cseq.add(rs.getString("seq"));
+	     }
+
+	     //close
+	         rs.close();
+	         stat.close();
+	         conn.close();
+
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	 }
+
+	
+	private static void OpenClassList() {
+		
+		//������������Ʈ
+    Connection conn = null;
+    Statement stat = null;
+    DBUtil util = new DBUtil();
+    ResultSet rs = null;     
+	  
+	  ocseq.clear();
+	  
+	  try {
+		  //open
+		     conn = util.open();
+		     stat = conn.createStatement();
+	     
+	     //���ν��� �θ���
+	     String sql = "select c.seq as seq, to_char(oc.startdate,'yy/mm/dd') as startdate  , to_char(oc.enddate,'yy/mm/dd') as enddate , c.name as name from tblOpenClass oc inner join tblClass c on c.seq = oc.classseq";
+
+	     //��¿�û
+	     rs = stat.executeQuery(sql);
+
+	     System.out.println();
+	     System.out.println("\t\t\t�����������������������������������������������");
+	     System.out.println("\t\t\t" + "<���� ���� ���>");
+	     System.out.println("\t\t\t�����������������������������������������������");
+	 
+	     if (rs.next()) {
+	     System.out.println("\t\t\t" + "[��ȣ]\t[����������]\t[����������]\t[������]");
+	     System.out.println("\t\t\t--------------------------------------------------------------");
+         while (rs.next()) {
+            System.out.printf("\t\t\t" + "%s\t %s\t%s\t%s\n"
+                        , rs.getString("seq")                  
+                        , rs.getString("startdate")
+                       , rs.getString("enddate")
+                       , rs.getString("name"));
+           // ocseq.add(rs.getString("ocseq"));
+         }
+
+	     
+	     
+	     //close
+         rs.close();
+         stat.close();
+         conn.close();
+
+	     }
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	 }
+	private static void ClassList() {
+		
+		//��������Ʈ
+	  Connection conn = null;
+	  CallableStatement stat = null;
+	  ResultSet rs = null;
+	  DBUtil util = new DBUtil();      
+	  
+	  cseq.clear();
+	  
+	  try {
+	     //����Ʈ ����
+	     
+	     //���ν��� �θ���
+	     String sql = "{ call  ProClass(?) }";
+
+	     //open
+	     conn = util.open();
+	     stat = conn.prepareCall(sql);
+	     
+	     //Ŀ���θ���
+	     stat.registerOutParameter(1, OracleTypes.CURSOR);
+	     
+	     //��¿�û
+	     stat.executeQuery();
+	     
+	     //��°� ���
+	     rs = (ResultSet)stat.getObject(1);
+	     
+	     System.out.println();
+	     System.out.println("\t\t\t�����������������������������������������������");
+	     System.out.println("\t\t\t" + "<���� ���>");
+	     System.out.println("\t\t\t�����������������������������������������������");
+	     
+	     System.out.println("\t\t\t[��ȣ]\t[�����Ⱓ]\t[������]");
+	     
+	     //���
+	     while (rs.next()) {
+	        System.out.println("\t\t\t--------------------------------------------------------------");
+	        System.out.printf("\t\t\t%s\t%s\t%s\n"
+	              ,rs.getString("seq")
+	              ,rs.getString("classPeriod")
+	        	  ,rs.getString("name"));
+	       cseq.add(rs.getString("seq"));
+	     }
+
+	     //close
+	         rs.close();
+	         stat.close();
+	         conn.close();
+
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	 }
+	private static void ClassRegister() {
+		// 2. ���� �ű� ���
+
+		String ClassSql = "insert into tblClass(seq,name,classPeriod) values (tblClass_seq.nextVal, ?, ?)";
+		String OpenClassSql = "insert into tblOpenClass (seq, startdate,enddate,teacherseq,roomseq,classseq) values (tblOpenClass_seq.nextVal, ?,?,?,?,?)";
+		String RoomSql = "insert into tblRoom (seq,name,num) values (tblRoom_seq.nextVal, ?, ?)";
+		String SubjectSql = "insert into tblSubject (seq,name,type,subjectPeriod,bookSeq) values (tblSubject_seq.nextVal, ?,?,?,?)";
+
+        ResultSet rs = null;
+        DBUtil util = new DBUtil();
+		
+		try {
+			Connection conn = null;
+			conn = util.open();
+	
+			PreparedStatement stat = null;
+			stat = conn.prepareStatement(ClassSql);
+			System.out.println("\t\t\t�Ʒ� ������ �Է����ּ���.");
+			System.out.print("\t\t\t1. ������ : ");
+			String ClassNameInput = scan.nextLine();
+			System.out.print("\t\t\t2. �����Ⱓ(month) : ");
+			String ClassPeriodInput = scan.nextLine();
+
+			stat.setString(1, ClassNameInput); //������
+			stat.setString(2,ClassPeriodInput); //�����Ⱓ
+			int cnt = stat.executeUpdate();
+			
+			PreparedStatement stat0 = null;
+			stat0 = conn.prepareStatement(OpenClassSql);
+			System.out.print("\t\t\t3. ���� ���� ��(YY/MM/DD) : ");
+			String ClassStartDayInput = scan.nextLine();
+			System.out.print("\t\t\t4. ���� ���� ��(YY/MM/DD) : ");
+			String ClassEndDayInput = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t�Ʒ� ������ �����Ͽ� �߰������� �Է����ּ���.");
+			System.out.println("\t\t\t���� �����Դϴ�.");
+			tlist();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.print("\n\t\t\t5. �����ȣ : ");
+			String TeacherSeq = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���ǽ� �����Դϴ�.");
+			Roomlist();
+			System.out.print("\t\t\t5. ���ǽǹ�ȣ : ");
+			String RoomSeq = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���� �����Դϴ�.");
+			ClassList();
+			System.out.print("\t\t\t7. ������ȣ : ");
+			String ClassSeq = scan.nextLine();
+		
+			stat0.setString(1, ClassStartDayInput); //����������
+			stat0.setString(2, ClassEndDayInput); //����������
+			stat0.setString(3, TeacherSeq); //����������ȣ
+			stat0.setString(4, RoomSeq); //���ǽǹ�ȣ
+			stat0.setString(5, ClassSeq); //������ȣ
+			
+			int cnt0 = stat0.executeUpdate();
+			
+//			PreparedStatement stat1 = null;
+//			String RoomName = null;
+//			String RoomPax;
+//			
+//			if(RoomSeq.equals("1")) {
+//				RoomName = "1���ǽ�";
+//				RoomPax = "30";
+//			} else if (RoomSeq.equals("2")) {
+//				RoomName = "2���ǽ�";
+//				RoomPax = "28";
+//			} else if (RoomSeq.equals("3")) {
+//				RoomName = "3���ǽ�";
+//				RoomPax = "24";
+//			} else if (RoomSeq.equals("4")) {
+//					RoomName = "4���ǽ�";
+//					RoomPax = "26";
+//			} else if (RoomSeq.equals("5")) {
+//				RoomName = "5���ǽ�";
+//				RoomPax = "24";
+//			} else if (RoomSeq.equals("6")) {
+//				RoomName = "6���ǽ�";
+//				RoomPax = "22";
+//			} else { 
+//				RoomName = "����";
+//				RoomPax = "0";
+//			}
+//			stat1 = conn.prepareStatement(RoomSql);
+//			stat1.setString(1, RoomName); //���ǽǸ�
+//			stat1.setString(2, RoomPax); //���ǽ��ο�
+//			int cnt1 = stat1.executeUpdate();
+			
+			PreparedStatement stat2 = null;
+			System.out.print("\t\t\t8. ���� ����� : ");
+			String SubjectNameInput = scan.nextLine();
+			stat2 = conn.prepareStatement(SubjectSql);
+			System.out.print("\t\t\t9. ���� ���� : ");
+			String SubjectTypeInput = scan.nextLine();
+			System.out.println("\t\t\t10. �����Ⱓ : ");
+			String SubjectPeriodInput = scan.nextLine();
+			System.out.println("\t\t\t�����������������������������������������������");
+			System.out.println("\t\t\t���� �����Դϴ�.");
+			BookList();
+			System.out.print("\t\t\t11. �����ȣ : ");
+			String BookSeq = scan.nextLine();
+			
+			System.out.println("\t\t\t�����������������������������������������������");
+			
+			stat2.setString(1, SubjectNameInput); //���������
+			stat2.setString(2,SubjectTypeInput); //��������
+			stat2.setString(3, SubjectPeriodInput); //�����Ⱓ
+			stat2.setString(4, BookSeq); //�����ȣ
+			int cnt2 = stat2.executeUpdate();
+
+			// ����κ�
+			System.out.println("\t\t\t�ű� ������ ��� �Ϸ� �Ǿ����ϴ�.");
+			System.out.println();
+
+			stat.close();
+			conn.close();
+
+		} catch (Exception e) {
+			System.out.println("ClassRegister()���� �����߻�");
+			e.printStackTrace();
+		}
+
+		System.out.println("\t\t\t��������������������������");
+		System.out.println("\t\t\ta. �ڷΰ���");
+		System.out.println("\t\t\tb. ó������ ����");
+		System.out.println("\t\t\t��������������������������");
+		System.out.print("\t\t\t��ȣ�� �Է����ּ��� : ");
+		String UserInput = scan.nextLine();
+
+		if (UserInput.equals("a")) {
+			// �ڷΰ���
+			ClassOfAdminMain();
+			
+		} else if (UserInput.equals("b")) {
+			// ó������ ����
+			//  Menu home = new Menu();
+			   
+//			   Menu.home();
+
+		} else {
+			System.out.println("\t\t\t�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+		}
+
+	}
+
+	private static void BookList() {
+		
+		//���縮��Ʈ
+	      Connection conn = null;
+	      CallableStatement stat = null;
+	      ResultSet rs = null;
+	      DBUtil util = new DBUtil();      
+	      
+	      bseq.clear();
+	      
+	      try {
+	         //����Ʈ ����
+	         
+	         //���ν��� �θ���
+	         String sql = "{ call  ProBook(?) }";
+
+	         //open
+	         conn = util.open();
+	         stat = conn.prepareCall(sql);
+	         
+	         //Ŀ���θ���
+	         stat.registerOutParameter(1, OracleTypes.CURSOR);
+	         
+	         //��¿�û
+	         stat.executeQuery();
+	         
+	         //��°� ���
+	         rs = (ResultSet)stat.getObject(1);
+	         
+	         System.out.println();
+	         System.out.println("\t\t\t������������������������������������������������");
+	         System.out.println("\t\t\t" + "<���� ���>");
+	         System.out.println("\t\t\t������������������������������������������������");
+	         
+	         System.out.println("\t\t\t[��ȣ]\t[���ǻ�]\t\t[�����]");
+	         
+	         //���
+	         while (rs.next()) {
+	            System.out.println("\t\t\t--------------------------------------------------------------");
+	            System.out.printf("\t\t\t%s\t%s\t%s\n"
+	                  ,rs.getString("seq")
+	                  ,rs.getString("publisher")
+	            	  ,rs.getString("name"));
+	            bseq.add(rs.getString("seq"));
+	         }
+
+	         //close
+	         rs.close();
+	         stat.close();
+	         conn.close();
+
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	 }
+	
+	private static void SubjectList() {
+	
+	//��������Ʈ
+  Connection conn = null;
+  CallableStatement stat = null;
+  ResultSet rs = null;
+  DBUtil util = new DBUtil();      
+  
+  subseq.clear();
+  
+  try {
+     //����Ʈ ����
+     
+     //���ν��� �θ���
+     String sql = "{ call  ProSubject(?) }";
+
+     //open
+     conn = util.open();
+     stat = conn.prepareCall(sql);
+     
+     //Ŀ���θ���
+     stat.registerOutParameter(1, OracleTypes.CURSOR);
+     
+     //��¿�û
+     stat.executeQuery();
+     
+     //��°� ���
+     rs = (ResultSet)stat.getObject(1);
+     
+     System.out.println();
+     System.out.println("\t\t\t�����������������������������������������������");
+     System.out.println("\t\t\t" + "<���� ���>");
+     System.out.println("\t\t\t�����������������������������������������������");
+     
+     System.out.println("\t\t\t[��ȣ]\t[�����]");
+     
+     //���
+     while (rs.next()) {
+        System.out.println("\t\t\t--------------------------------------------------------------");
+        System.out.printf("\t\t\t%s\t%s\n"
+              ,rs.getString("seq")
+              ,rs.getString("name"));
+     }
+
+     //close
+         rs.close();
+         stat.close();
+         conn.close();
+
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+ }
+
+	private static void Roomlist() {
+	 //���ǽ� ����Ʈ
+  Connection conn = null;
+  CallableStatement stat = null;
+  ResultSet rs = null;
+  DBUtil util = new DBUtil();      
+  
+  rseq.clear();
+  
+  try {
+     //����Ʈ ����
+     
+     //���ν��� �θ���
+     String sql = "{ call  ProRoom(?) }";
+
+     //open
+     conn = util.open();
+     stat = conn.prepareCall(sql);
+     
+     //Ŀ���θ���
+     stat.registerOutParameter(1, OracleTypes.CURSOR);
+     
+     //��¿�û
+     stat.executeQuery();
+     
+     //��°� ���
+     rs = (ResultSet)stat.getObject(1);
+     
+     System.out.println();
+     System.out.println("\t\t\t������������������������������������������������");
+     System.out.println("\t\t\t" + "<���ǽ� ���>");
+     System.out.println("\t\t\t������������������������������������������������");
+     
+     System.out.println("\t\t\t[��ȣ]\t[���ǽ� ��]\t[����]");
+     
+     //���
+     while (rs.next()) {
+        System.out.println("\t\t\t--------------------------------------------------------------");
+        System.out.printf("\t\t\t%s\t%s\t\t%s\n"
+              ,rs.getString("seq")
+              ,rs.getString("name")
+        	  ,rs.getString("num"));
+        rseq.add(rs.getString("seq"));
+     }
+
+     //close
+         rs.close();
+         stat.close();
+         conn.close();
+
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+ }
+	private static void tlist() {
+		 //�������� ����Ʈ
+	      Connection conn = null;
+	      CallableStatement stat = null;
+	      ResultSet rs = null;
+	      DBUtil util = new DBUtil();      
+	      
+//	      tseq.clear();
+	      
+	      try {
+	         //����Ʈ ����
+	         
+	         //���ν��� �θ���
+	         String sql = "{ call procTInfor(?) }";
+
+	         //open
+	         conn = util.open();
+	         stat = conn.prepareCall(sql);
+	         
+	         //Ŀ���θ���
+	         stat.registerOutParameter(1, OracleTypes.CURSOR);
+	         
+	         //��¿�û
+	         stat.executeQuery();
+	         
+	         //��°� ���
+	         rs = (ResultSet)stat.getObject(1);
+	         
+	         System.out.println();
+	         System.out.println("\t\t\t������������������������������������������������");
+	         System.out.println("\t\t\t" + "<���� ���>");
+	         System.out.println("\t\t\t������������������������������������������������");
+	         
+	         System.out.println("\t\t\t[��ȣ]\t[�̸�]\t[���̵�]");
+	         
+	         //���
+	         while (rs.next()) {
+	            System.out.println("\t\t\t--------------------------------------------------------------");
+	            System.out.printf("\t\t\t%s\t%s\t%s\n"
+	                  ,rs.getString("seq")
+	                  ,rs.getString("name")
+	                  ,rs.getString("id"));
+	            tseq.add(rs.getString("seq"));
+	         }
+
+	         //close
+	         rs.close();
+	         stat.close();
+	         conn.close();
+
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	 }
+	private static void CheckInfo() {
+		// 1. ��ü ���� ���� ���� Ȯ��
+		ArrayList<String> list3 = new ArrayList<String>();
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		
+		try {
+
+			String sql = "{ call ProvwInfo(?) }";
+
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+
+			stat.registerOutParameter(1, OracleTypes.CURSOR);
+
+			stat.executeQuery();
+
+			rs = (ResultSet) stat.getObject(1);
+			
+			System.out
+					.println("\t\t\t���������������������������������������������������������������������������������������������������������������");
+			System.out.println("\t\t\t[No.]\t[��ȣ]\t[������]\t\t\t\t\t\t[�����]\t\t\t[�����]\t\t[���ǻ��]\t[���ǽǸ�]\t[����]");
+			System.out
+					.println("\t\t\t���������������������������������������������������������������������������������������������������������������");
+			while (rs.next()) { list3.add(rs.getString("��ȣ")+"\t"+ rs.getString("������") +"\t\t"+
+					rs.getString("�����")+"\t\t"+ rs.getString("�����") +"\t\t"+ rs.getString("���ǻ��")+"\t"+ rs.getString("���ǽǸ�")+"\t"+
+					rs.getString("����"));
+			
+			}
+			page3(list3);
+		} catch (Exception e) {
+			System.out.println("CheckInfo()���� ����");
+			e.printStackTrace();
+		}
+//		System.out.println("���������������������������������������������������������������������������������������������������������������");
+//		System.out.println("a. �ڷΰ���");
+//		System.out.println("b. ó������ ����");
+//		System.out.println("���������������������������������������������������������������������������������������������������������������");
+//		System.out.print("��ȣ�� �Է����ּ��� : ");
+//		String CheckInfoInput = scan.nextLine();
+//
+//		if (CheckInfoInput.equals(toLowerCase("a"))) {
+//			// �ڷΰ���
+//			ClassOfAdminMain();
+//			
+//		} else if (CheckInfoInput.equals("b")) {
+//			// ó������ ����
+//			// Menu home = new Menu();
+//			   
+//		   // Menu.home();
+//		} else {
+//			System.out.println("�߸��� �Է��Դϴ�. �ٽ��Է��ϼ���.");
+//		}
+
+	}
+
+}

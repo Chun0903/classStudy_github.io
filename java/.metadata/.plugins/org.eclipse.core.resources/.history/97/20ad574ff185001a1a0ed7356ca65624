@@ -1,0 +1,39 @@
+package com.test.object;
+
+public class Pencil {
+	
+	private String hardness;
+	private String infor;
+	
+	
+	public String getHardness() {
+		return hardness;
+	}
+	public void setHardness(String hardness) {
+		if (hardness.equals("4B") 
+				|| hardness.equals("3B")
+				|| hardness.equals("2B")
+				|| hardness.equals("B")
+				|| hardness.equals("HB")
+				|| hardness.equals("H")
+				|| hardness.equals("2H")
+				|| hardness.equals("3H")
+				|| hardness.equals("3H")) {
+		this.hardness = hardness;
+		}
+	}
+	
+	
+	public String getInfor() {
+		return infor;
+	}
+	public void setInfor(String infor) {
+		infor = this.hardness;
+		this.infor = infor;
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,154 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import oracle.jdbc.OracleTypes;
+
+public class ALogin {
+	
+	//개설과정 번호 리스트
+	static ArrayList<String> ocseq = new ArrayList<String>();
+	
+	public static void main(String[] args) {
+		
+		aLogin();
+
+	}
+
+	static void aLogin() {
+		Connection conn = null;
+		CallableStatement stat = null;
+		CallableStatement stat2 = null;
+		DBUtil util = new DBUtil();
+		Scanner scan = new Scanner(System.in);
+		
+		try {
+			
+			System.out.println();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t" + "<개설 과정 목록>");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			openClassList();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+			
+			System.out.println();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t" + "<관리자 로그인>");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			
+			System.out.println();
+			System.out.print("\t\t\t아이디 : ");
+			String id = scan.nextLine();
+			
+			System.out.print("\t\t\t비밀번호 : ");
+			String pw = scan.nextLine();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
+//			String id = "gahgg4833";
+//			String pw = "3168928";
+			
+			
+			String sql = "";
+			
+			sql = "{ call procALoginId(?,?) }";
+			
+			conn = util.open("211.63.89.59","project","java1234");
+			stat = conn.prepareCall(sql);
+			
+
+				
+			stat.setString(1, id);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
+
+			//아이디 불러오기
+			stat.executeQuery();
+			
+			try {
+				
+				sql = "{ call procALoginPw(?,?,?) }";
+				
+				stat2 = conn.prepareCall(sql);
+				
+				stat2.setString(1, pw);
+				stat2.registerOutParameter(2, OracleTypes.NUMBER);
+				stat2.registerOutParameter(3, OracleTypes.VARCHAR);
+				
+				stat2.executeQuery();
+				
+			} catch (Exception e) {
+				System.out.println("\t\t\t아이디와 비밀번호가 일치하지 않습니다.");
+				aLogin();
+			}
+			
+			if(id.equals(stat2.getString(3))) {
+				
+				System.out.println("\t\t\t로그인에 성공했습니다.");
+//				System.out.println();
+				System.out.printf("\t\t\t안녕하세요. [%s번] 관리자님\n", stat2.getString(2));
+				System.out.println();
+				
+				
+			}else {
+				System.out.println("\t\t\t아이디와 비밀번호가 일치하지 않습니다.");
+				aLogin();
+			}
+			
+			
+			stat.close();
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println("\t\t\t존재하지 않는 아이디 입니다. 로그인에 실패했습니다.");
+			aLogin();
+		}
+		
+		
+	}
+	
+	private static void openClassList() {
+		Connection conn = null;
+		Statement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;	
+		
+		ocseq.clear();
+		
+		try {
+			
+			String sql = "";
+			sql = "select DISTINCT ocseq, name from vwAssurveyClass order by ocseq";
+			
+			conn = util.open("211.63.89.59","project","java1234");
+			stat = conn.createStatement();
+			
+			rs = stat.executeQuery(sql);
+			
+			System.out.println("\t\t\t" + "[개설 과목]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t" + "%s. %s\n"
+								, rs.getString("ocseq")						
+								, rs.getString("name"));
+				ocseq.add(rs.getString("ocseq"));
+			}
+			System.out.println();
+			rs.close();
+			stat.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			System.out.println("AS_001()");
+			e.printStackTrace();
+		}
+		
+	}
+
+}

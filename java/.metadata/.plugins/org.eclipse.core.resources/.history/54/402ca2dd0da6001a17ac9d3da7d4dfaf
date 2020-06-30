@@ -1,0 +1,83 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Random;
+
+public class DummyPoint {
+
+	static Random rnd;
+	
+	static {
+		//rnd = new Random();
+		rnd = new Random(); 
+
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		aaa();
+		
+		
+	}
+	
+	
+	private static void aaa() {
+	      Connection conn = null; // DB연결된 상태(세션)을 담은 객체
+	        PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
+	        
+	        try {
+	           conn = DBConnection.getConnection();
+	           for (int i = 0; i<10; i++) {
+	           int attendPonit = makeAttendPonit();	//출결 배점
+	           int writePoint = makeWritePoint();	//필기 배점 
+	           int pracricPoint = makePracricPoint();//실기 배점
+	           String quary = "INSERT INTO TBLPOINT(SEQ, ATTENDPOINT, WRITEPOINT, PRACTICEPOINT) VALUES (TBLPOINTSEQ.NEXTVAL,\'" + attendPonit + "\',\'"  + writePoint + "\',\'"  + pracricPoint +"\')";
+	           System.out.println(quary);
+	           pstm = conn.prepareStatement(quary);
+	            pstm.executeUpdate();
+	           }
+	           System.out.println("Insert 완료");
+	           conn.close();
+	        } catch (Exception e) {
+	           e.printStackTrace();
+	      }
+	   }
+
+	//실기 배점
+	private static int makePracricPoint() {
+		int pracricPoint = 100 - makeAttendPonit() - makeWritePoint();
+		
+		return pracricPoint;
+	}
+
+	//필기 배점
+	private static int makeWritePoint() {
+		int writePoint = 0;
+		
+		writePoint = rnd.nextInt(91 - makeAttendPonit()) + 20;
+		
+		return writePoint;
+	}
+
+	//출결 배점
+	private static int makeAttendPonit() {
+		int attendPonit = 0;
+		
+		attendPonit = rnd.nextInt(41) + 20;
+		
+		return attendPonit;
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+package com.test.project;
+
+public class testT {
+
+	public static void main(String[] args) {
+		TLogin Tlogin = new TLogin();	//메소드 재 선언
+		Tlogin.tLogin();
+		
+		TSchedule.main(null);
+		
+	}
+}

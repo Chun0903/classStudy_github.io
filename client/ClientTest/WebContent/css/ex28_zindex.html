@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cat{
+            position: absolute;
+
+        }
+        #cat1{ z-index: 1; left: 0px; top: 0px;}
+        #cat2{ left: 125px; top: 90px; z-index: 3;}
+        #cat3{ left: 200px; top: 150px; z-index: 2;}
+
+        #box {
+            border: 1px solid black;
+            width: 1250px;
+        }
+        #box .cats {
+            display: block;
+            float: left;
+            opacity: .6;/*불투명도(0~1)*/
+        }
+
+        #box .cats:hover{
+            opacity: 1;
+            /* position: relative;
+            left: 0;
+            top: -10px;
+            width: 300px; */
+        }
+
+        .content {
+            opacity: 0.7;
+        }
+        .content > span {
+            /* color:  red;
+            text-decoration: underline; */
+            border-bottom: 1px dashed gray;
+        }
+
+        .content > span:hover {
+            opacity: 1;
+            color: red;
+        }
+
+        .data {
+            outline: none;
+            border: 1px solid #ccc;
+            padding: 3px;    
+        }
+
+        .data:focus{
+            background-color: rgb(213, 209, 248);
+            border-color: rgb(118, 104, 241);
+        }
+
+    </style>
+</head>
+<body>
+    <img src="../images/cat01.jpg" class="cat" id="cat1">
+    <img src="../images/cat02.jpg" class="cat" id="cat2">
+    <img src="../images/cat03.jpg" class="cat" id="cat3">
+    
+    <hr style="margin-top: 500px;">
+    
+    <div id="box">
+        <img src="../images/cat01.jpg" class="cats">
+        <img src="../images/cat02.jpg" class="cats">
+        <img src="../images/cat03.jpg" class="cats">
+        <img src="../images/cat04.jpg" class="cats">
+        <img src="../images/cat05.jpg" class="cats">
+        <div style="clear: both;"></div>
+    </div>
+
+    
+
+    <hr>
+
+    <!-- :hover / :focus -->
+
+    <h1>제목입니다.</h1>
+    <p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem qui, architecto nesciunt quasi libero suscipit quibusdam? Provident officia ea dolores laborum nihil accusantium, enim aperiam necessitatibus! Quas numquam iure rerum!
+    Sequi sint, explicabo soluta, natus officia recusandae maiores, modi voluptatem perferendis harum ullam deserunt fugit quisquam quia quaerat maxime aliquam fuga <span>quasi!</span> Id, praesentium? Dolore incidunt fuga nulla nihil maiores!
+    Aliquam quas dolorem repudiandae doloremque sit ab. Inventore quaerat excepturi nesciunt labore, velit incidunt ipsa fugiat, ut vitae est cum id vel? Officia quasi aut dignissimos aliquid nam omnis fuga.
+    Praesentium voluptates, sit omnis <span>magnam</span> dolor enim porro ipsum provident! Harum ducimus, perspiciatis at vero, natus provident velit vel libero laudantium ab itaque. Laudantium rerum, blanditiis voluptas facilis cupiditate sapiente!
+    Atque minima cumque vitae amet consequuntur ex reiciendis, sit laboriosam et? Dolores beatae porro minima culpa eligendi illo accusantium eum soluta adipisci voluptatem earum, cumque at expedita voluptatum aliquid vitae!
+    Obcaecati iure esse tempore provident, <span>pariatur</span> nemo quos vel ea vero voluptate reiciendis accusantium, laborum ipsum atque est autem omnis perferendis. Quo officiis natus atque ad deserunt, fuga corporis.
+    Quasi numquam odio repellendus aspernatur illum libero atque ipsam aliquam, asperiores, in dignissimos? Ducimus corporis minus id harum blanditiis qui reprehenderit a numquam, ullam vero architecto autem nulla, assumenda distinctio.
+    Itaque debitis eum corporis rem voluptas aut neque mollitia, quod iste cupiditate delectus! Numquam architecto officiis similique non dicta modi rerum maiores enim vitae veniam! Perferendis molestias distinctio pariatur error?
+    Alias praesentium rem doloribus sed vel doloremque aliquam, odit modi quasi obcaecati enim accusamus pariatur cumque hic magnam provident deleniti iure, natus ipsum. Voluptates quod, iure amet quibusdam corrupti non?
+    </p>
+
+    <hr>
+
+    <h1>입력화면</h1>
+
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+    <div>데이터 : <input type="text" class="data"></div>
+    <div>짧은 데이터 : <input type="text" class="data" size="10"></div>
+    <div>긴 데이터 : <input type="text" class="data" size="50"></div>
+
+
+
+</body>
+</html>

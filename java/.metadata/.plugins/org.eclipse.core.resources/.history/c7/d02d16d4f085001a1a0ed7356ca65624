@@ -1,0 +1,111 @@
+package com.test.object;
+
+public class Packer {
+	
+	private static int PencilCount;
+	private static int EraserCount;
+	private static int BallPoinPenCount;
+	private static int RulerCount;
+	
+	
+	public static int getPencilCount() {
+		return PencilCount;
+	}
+	public static void setPencilCount(int pencilCount) {
+		PencilCount = pencilCount;
+	}
+	
+	
+	public static int getEraserCount() {
+		return EraserCount;
+	}
+	public static void setEraserCount(int eraserCount) {
+		Packer.EraserCount = eraserCount;
+	}
+	
+	
+	public static int getBallPoinPenCount() {
+		return BallPoinPenCount;
+	}
+	public static void setBallPoinPenCount(int ballPoinPenCount) {
+		Packer.BallPoinPenCount = ballPoinPenCount;
+	}
+	
+	
+	public static int getRulerCount() {
+		return RulerCount;
+	}
+	public static void setRulerCount(int rulerCount) {
+		Packer.RulerCount = rulerCount;
+	}
+	
+	public void packing(Pencil pencil) {
+		if (pencil.getHardness().equals("4B")
+				|| pencil.getHardness().equals("3B")
+				|| pencil.getHardness().equals("2B")
+				|| pencil.getHardness().equals("B")
+				|| pencil.getHardness().equals("HB")
+				|| pencil.getHardness().equals("H")
+				|| pencil.getHardness().equals("2H")
+				|| pencil.getHardness().equals("3H")
+				|| pencil.getHardness().equals("3H")) {
+			System.out.printf("포장 전 검수 : %s 진하기 연필입니다.", pencil.getHardness());
+			System.out.println("포장을 완료했습니다.");
+			PencilCount++;
+		}else {
+			System.out.println("연필 포장 불량");
+		}
+	}
+	
+	public void packing(Eraser eraser) {
+		if(eraser.getSize().equals("Large") 
+				||eraser.getSize().equals("Medium")
+				||eraser.getSize().equals("Small")){
+			System.out.printf("포장 전 검수 : %s 사이즈 지우개입니다.",eraser.getSize());
+			System.out.println("포장을 완료했습니다.");
+			EraserCount++;
+		}else {
+			System.out.println("지우개 포장 불량");
+		}
+	}
+	
+	public void packing(BallPointPen ballPointPen) {
+		if((ballPointPen.getThickness() == 0.3 
+				|| ballPointPen.getThickness() == 0.5
+				|| ballPointPen.getThickness() == 0.7
+				|| ballPointPen.getThickness() == 1
+				|| ballPointPen.getThickness() == 1.5)
+				&& (ballPointPen.getColor().equals("red") 
+				|| ballPointPen.getColor().equals("blue")
+				|| ballPointPen.getColor().equals("green")
+				|| ballPointPen.getColor().equals("black"))) {
+			System.out.printf("포장 전 검수 : %s 색상 %dmm 지우개입니다."
+					,ballPointPen.getColor(),ballPointPen.getThickness());
+			BallPoinPenCount++;
+		}else {
+			System.out.println("볼펜 포장 불량");
+		}
+		
+	}
+	
+	public void packing(Ruler ruler) {
+		if((ruler.getLength() == 30 
+				|| ruler.getLength() ==50
+				|| ruler.getLength() == 100)
+				&& ruler.getShape().equals("줄자")
+				|| ruler.getShape().equals("운형자")
+				|| ruler.getShape().equals("삼각자")) {
+			System.out.printf("포장 전 검수 : %dcm %s입니다."
+					,ruler.getLength(), ruler.getShape());
+			RulerCount++;
+		}else {
+			System.out.println("지우개 포장 불량");
+		}
+		
+	}
+			
+			
+			
+	
+
+}

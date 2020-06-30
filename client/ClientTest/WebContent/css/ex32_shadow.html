@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #p1 {
+            /* text-shadow: h-shadow v-shadow blur color */
+            text-shadow: 3px 3px 2px #777;
+        }
+
+        #p2 {
+            border: 1px solid white;
+            
+        }
+
+        #p2:hover {
+            border : 1px solid #777;
+            box-shadow: 3px 3px 2px #777;
+        }
+
+        .icon:hover {
+            box-shadow: 0px 10px 5px #555;
+            /* margin-top: -3px; */
+            transform: translate(0px, -5px);
+        }
+
+        /* #list li {
+            border: 1px solid white;
+        } */
+
+        #list li:hover {
+            color: red;
+            /* border: 1px solid red; */
+            outline: 1px solid red;
+        }
+
+
+        #box1, #box2 {
+            border: 1px solid black;
+            width: 300px;
+            /* height: 20px; */
+            overflow: hidden;
+            white-space: nowrap;
+
+            margin-bottom: 50px;
+        }
+
+        #box1 { text-overflow: clip; }
+        #box2 { text-overflow: ellipsis; }
+
+    </style>
+</head>
+<body>
+    
+    <!-- (p#p$>lorem)*3 -->
+    <p id="p1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum modi deserunt, provident dolore voluptatibus recusandae, quibusdam autem iure consectetur reiciendis ex veniam cupiditate, quae laboriosam amet! Eum voluptatem quisquam modi!</p>
+    <p id="p2">Perspiciatis, nesciunt cumque tempora expedita quis unde ducimus aliquam beatae voluptate dolorem tenetur sed, modi, aliquid quaerat omnis repellat eligendi asperiores earum. Eum totam aliquid rerum nihil, incidunt tempore nisi!</p>
+    <p id="p3">Ipsa nisi, cumque error maxime earum vitae quibusdam, iure minima facilis, at impedit repellat. Optio ad quibusdam, nam explicabo cum expedita necessitatibus illo obcaecati ipsa cumque corrupti temporibus nobis tenetur.</p>
+
+    <hr>
+
+    <img src="../images/rect_icon01.png" class="icon">
+    <img src="../images/rect_icon02.png" class="icon">
+    <img src="../images/rect_icon03.png" class="icon">
+    <img src="../images/rect_icon04.png" class="icon">
+    <img src="../images/rect_icon05.png" class="icon">
+
+    <hr>
+
+    <h1>오늘의 할일</h1>
+
+    <ul id="list">
+
+        <li>빨리 집에 가기</li>
+        <li>밥먹기</li>
+        <li>잠자기</li>
+        <li>쪼금 공부하기</li>
+
+    </ul>
+
+    <hr>
+
+    <div id="box1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, culpa.</div>
+    <div id="box2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, molestias!</div>
+
+</body>
+</html>

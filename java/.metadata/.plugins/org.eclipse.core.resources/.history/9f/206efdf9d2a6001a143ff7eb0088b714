@@ -1,0 +1,72 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Random;
+
+public class TeacherSubject {
+	
+	static Random rnd;
+	
+	static {
+
+		rnd = new Random(); 
+
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		subjects();
+		
+		
+	}
+
+	private static void subjects() {
+		
+		
+	      Connection conn = null; // DB연결된 상태(세션)을 담은 객체
+	        PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
+	        
+	        try {
+	           conn = DBConnection.getConnection();
+	           for (int i = 0; i<40; i++) {        	   
+	        	int teacherseq = makeTeacherseq();
+	        	int subjectseq = makeSubjectseq();
+	           
+	           String quary = "INSERT INTO TBLPOSSIBLE(SEQ, TEACHERSEQ, , SUBJECTSEQ) VALUES (TBLPOSSIBLE_SEQ.NEXTVAL,\'" + teacherseq + "\',\'"  + subjectseq  +"\')";
+	           System.out.println(quary);
+	           pstm = conn.prepareStatement(quary);
+	            pstm.executeUpdate();
+	           }
+	           System.out.println("Insert 완료");
+	           conn.close();
+	        } catch (Exception e) {
+	           e.printStackTrace();
+	      }
+	   
+	
+	
+	}//main
+
+	private static int makeSubjectseq() {
+//		int subjectseq = 0;
+		
+		int subjectSeq[] = {1,2,3,4,5,6,7,8,9,10};	//seq 적기
+		
+		int subjectSeqRND = rnd.nextInt(subjectSeq.length);
+				
+		return subjectSeq[subjectSeqRND];
+	}
+
+	private static int makeTeacherseq() {
+		int teacherseq = 0;
+		
+		
+		return teacherseq;
+	}
+	
+	
+	
+
+}//sub

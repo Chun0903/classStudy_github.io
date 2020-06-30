@@ -1,0 +1,86 @@
+package com.test.project;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import oracle.jdbc.OracleTypes;
+
+public class TLogin {
+	
+	static ArrayList<String> tseqLogin = new ArrayList<String>();
+	
+	public static void main(String[] args) {
+		
+		tLogin();
+		
+	}
+
+	private static void tLogin() {
+		Connection conn = null;
+		CallableStatement stat = null;
+		CallableStatement stat2 = null;
+		DBUtil util = new DBUtil();
+		
+		try {
+			tseqLogin.clear();
+			
+			String id = "gahgg4833";
+			String pw = "3168928";
+			
+			
+			String sql = "";
+			
+			sql = "{ call procTtdLoginId(?,?) }";
+			
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			
+
+				
+			stat.setString(1, id);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
+
+			//아이디 불러오기
+			stat.executeQuery();
+			
+			try {
+				
+				sql = "{ call procTtdLoginPw(?,?,?) }";
+				
+				stat2 = conn.prepareCall(sql);
+				
+				stat2.setString(1, pw);
+				stat2.registerOutParameter(2, OracleTypes.NUMBER);
+				stat2.registerOutParameter(3, OracleTypes.VARCHAR);
+				
+				stat2.executeQuery();
+				
+			} catch (Exception e) {
+				System.out.println("잘못된 비밀번호 입니다. 로그인에 실패했습니다.");
+			}
+			
+			if(id.equals(stat2.getString(3))) {
+				
+				System.out.println("로그인에 성공했습니다.");
+				System.out.println();
+				System.out.printf("안녕하세요. %s님", id);
+			}else {
+				System.out.println("아이디와 비밀번호가 일치하지 않습니다.");
+			}
+			
+			
+			stat.close();
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println("존재하지 않는 아이디 입니다. 로그인에 실패했습니다.");
+			
+		}
+		
+		
+	}
+
+}

@@ -1,0 +1,46 @@
+package com.test.object;
+
+public class Packer {
+	
+	private static int PencilCount;
+	private static int eraserCount;
+	private static int ballPoinPenCount;
+	private static int rulerCount;
+	
+	
+	public static int getPencilCount() {
+		return PencilCount;
+	}
+	public static void setPencilCount(int pencilCount) {
+		PencilCount = pencilCount;
+	}
+	
+	
+	public static int getEraserCount() {
+		return eraserCount;
+	}
+	public static void setEraserCount(int eraserCount) {
+		Packer.eraserCount = eraserCount;
+	}
+	
+	
+	public static int getBallPoinPenCount() {
+		return ballPoinPenCount;
+	}
+	public static void setBallPoinPenCount(int ballPoinPenCount) {
+		Packer.ballPoinPenCount = ballPoinPenCount;
+	}
+	
+	
+	public static int getRulerCount() {
+		return rulerCount;
+	}
+	public static void setRulerCount(int rulerCount) {
+		Packer.rulerCount = rulerCount;
+	}
+	
+	public void packing(Pencil pencil) {
+		
+	}
+
+}
