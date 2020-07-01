@@ -1,282 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
-        #body{
-            width: 760px;
-            margin: auto;
+        #main {
+            width: 770px;
+            margin: 0px auto;
         }
-
-        #bnts {
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-
-        #bnts::after{
-            content: ' ';
-            display: block;
-            clear: both;
-        }
-
-        #bnts div {
+        
+        .number {
             border: 1px solid black;
             border-radius: 5px;
             width: 150px;
             height: 50px;
+            font-size: 2.2em;
             text-align: center;
             float: left;
-            margin-left: 2px;
-            font-size: 35px;
+            margin-right: 2px;
         }
-
-        #boxs {
-            width: 760px;
+        
+        hr {
+            border: 0px;
+            border-top: 1px solid black;
         }
-
-        #boxs::after{
-            content: ' ';
-            display: block;
-            clear: both;
-        }
-
-        #boxs div {
+        
+        .pixel {
+            float: left;
             border: 1px solid black;
             width: 74px;
             height: 74px;
-            float: left;
-            background-image: url("../images/rect_icon07.png");
-            background-size: 74px;
+            background-image: url(images/rect_icon07.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            transition: all .4s;
+            transition-timing-function: linear;
         }
-
-        #bnt1:hover #box1 {
+        
+        #one:hover~.one {
             background-position: center 74px;
         }
-
-
         
+        #two:hover~.two {
+            background-position: center 74px;
+        }
         
-
-
+        #three:hover~.three {
+            background-position: center 74px;
+        }
+        
+        #four:hover~.four {
+            background-position: center 74px;
+        }
+        
+        #five:hover~.five {
+            background-position: center 74px;
+        }
     </style>
 </head>
+
 <body>
 
-    <div id="bnts">
-        <div id="bnt1">1</div>
-        <div id="bnt2">2</div>
-        <div id="bnt3">3</div>
-        <div id="bnt4">4</div>
-        <div id="bnt5">5</div>
+    <div id="main">
+        <div id="one" class="number">1</div>
+        <div id="two" class="number">2</div>
+        <div id="three" class="number">3</div>
+        <div id="four" class="number">4</div>
+        <div id="five" class="number">5</div>
+        <div style="clear:both;"></div>
+        <hr>
+
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel four five"></div>
+        <div class="pixel four five"></div>
+        <div class="pixel"></div>
+        <div class="pixel one"></div>
+        <div class="pixel one"></div>
+        <div class="pixel four"></div>
+        <div class="pixel two three four"></div>
+        <div class="pixel two three"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel one two three four five"></div>
+        <div class="pixel one two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two four four"></div>
+        <div class="pixel two four four"></div>
+        <div class="pixel four"></div>
+        <div class="pixel one four"></div>
+        <div class="pixel one four"></div>
+        <div class="pixel four"></div>
+        <div class="pixel three four five"></div>
+        <div class="pixel three four five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel one two three five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three four five"></div>
+        <div class="pixel two three five"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div style="clear:both;"></div>
+
     </div>
 
-    <div id="boxs">
-        <div id="box1"></div>
-        <div id="box2"></div>
-        <div id="box3"></div>
-        <div id="box4"></div>
-        <div id="box5"></div>
-        <div id="box6"></div>
-        <div id="box7"></div>
-        <div id="box8"></div>
-        <div id="box9"></div>
-        <div id="box10"></div>
-        <div id="box11"></div>
-        <div id="box12"></div>
-        <div id="box13"></div>
-        <div id="box14"></div>
-        <div id="box15"></div>
-        <div id="box16"></div>
-        <div id="box17"></div>
-        <div id="box18"></div>
-        <div id="box19"></div>
-        <div id="box20"></div>
-        <div id="box21"></div>
-        <div id="box22"></div>
-        <div id="box23"></div>
-        <div id="box24"></div>
-        <div id="box25"></div>
-        <div id="box26"></div>
-        <div id="box27"></div>
-        <div id="box28"></div>
-        <div id="box29"></div>
-        <div id="box30"></div>
-        <div id="box31"></div>
-        <div id="box32"></div>
-        <div id="box33"></div>
-        <div id="box34"></div>
-        <div id="box35"></div>
-        <div id="box36"></div>
-        <div id="box37"></div>
-        <div id="box38"></div>
-        <div id="box39"></div>
-        <div id="box40"></div>
-        <div id="box41"></div>
-        <div id="box42"></div>
-        <div id="box43"></div>
-        <div id="box44"></div>
-        <div id="box45"></div>
-        <div id="box46"></div>
-        <div id="box47"></div>
-        <div id="box48"></div>
-        <div id="box49"></div>
-        <div id="box50"></div>
-        <div id="box51"></div>
-        <div id="box52"></div>
-        <div id="box53"></div>
-        <div id="box54"></div>
-        <div id="box55"></div>
-        <div id="box56"></div>
-        <div id="box57"></div>
-        <div id="box58"></div>
-        <div id="box59"></div>
-        <div id="box60"></div>
-        <div id="box61"></div>
-        <div id="box62"></div>
-        <div id="box63"></div>
-        <div id="box64"></div>
-        <div id="box65"></div>
-        <div id="box66"></div>
-        <div id="box67"></div>
-        <div id="box68"></div>
-        <div id="box69"></div>
-        <div id="box70"></div>
-        <div id="box71"></div>
-        <div id="box72"></div>
-        <div id="box73"></div>
-        <div id="box74"></div>
-        <div id="box75"></div>
-        <div id="box76"></div>
-        <div id="box77"></div>
-        <div id="box78"></div>
-        <div id="box79"></div>
-        <div id="box80"></div>
-        <div id="box81"></div>
-        <div id="box82"></div>
-        <div id="box83"></div>
-        <div id="box84"></div>
-        <div id="box85"></div>
-        <div id="box86"></div>
-        <div id="box87"></div>
-        <div id="box88"></div>
-        <div id="box89"></div>
-        <div id="box90"></div>
-        <div id="box91"></div>
-        <div id="box92"></div>
-        <div id="box93"></div>
-        <div id="box94"></div>
-        <div id="box95"></div>
-        <div id="box96"></div>
-        <div id="box97"></div>
-        <div id="box98"></div>
-        <div id="box99"></div>
-        <div id="box100"></div>
-        <!-- <div><img src="../images/rect_icon07.png" id="img1"></div>
-        <div><img src= id="img2"></div>
-        <div><img src="../images/rect_icon07.png" id="img3"></div>
-        <div><img src="../images/rect_icon07.png" id="img4"></div>
-        <div><img src="../images/rect_icon07.png" id="img5"></div>
-        <div><img src="../images/rect_icon07.png" id="img6"></div>
-        <div><img src="../images/rect_icon07.png" id="img7"></div>
-        <div><img src="../images/rect_icon07.png" id="img8"></div>
-        <div><img src="../images/rect_icon07.png" id="img9"></div>
-        <div><img src="../images/rect_icon07.png" id="img10"></div>
-        <div><img src="../images/rect_icon07.png" id="img11"></div>
-        <div><img src="../images/rect_icon07.png" id="img12"></div>
-        <div><img src="../images/rect_icon07.png" id="img13"></div>
-        <div><img src="../images/rect_icon07.png" id="img14"></div>
-        <div><img src="../images/rect_icon07.png" id="img15"></div>
-        <div><img src="../images/rect_icon07.png" id="img16"></div>
-        <div><img src="../images/rect_icon07.png" id="img17"></div>
-        <div><img src="../images/rect_icon07.png" id="img18"></div>
-        <div><img src="../images/rect_icon07.png" id="img19"></div>
-        <div><img src="../images/rect_icon07.png" id="img20"></div>
-        <div><img src="../images/rect_icon07.png" id="img21"></div>
-        <div><img src="../images/rect_icon07.png" id="img22"></div>
-        <div><img src="../images/rect_icon07.png" id="img23"></div>
-        <div><img src="../images/rect_icon07.png" id="img24"></div>
-        <div><img src="../images/rect_icon07.png" id="img25"></div>
-        <div><img src="../images/rect_icon07.png" id="img26"></div>
-        <div><img src="../images/rect_icon07.png" id="img27"></div>
-        <div><img src="../images/rect_icon07.png" id="img28"></div>
-        <div><img src="../images/rect_icon07.png" id="img29"></div>
-        <div><img src="../images/rect_icon07.png" id="img30"></div>
-        <div><img src="../images/rect_icon07.png" id="img31"></div>
-        <div><img src="../images/rect_icon07.png" id="img32"></div>
-        <div><img src="../images/rect_icon07.png" id="img33"></div>
-        <div><img src="../images/rect_icon07.png" id="img34"></div>
-        <div><img src="../images/rect_icon07.png" id="img35"></div>
-        <div><img src="../images/rect_icon07.png" id="img36"></div>
-        <div><img src="../images/rect_icon07.png" id="img37"></div>
-        <div><img src="../images/rect_icon07.png" id="img38"></div>
-        <div><img src="../images/rect_icon07.png" id="img39"></div>
-        <div><img src="../images/rect_icon07.png" id="img40"></div>
-        <div><img src="../images/rect_icon07.png" id="img41"></div>
-        <div><img src="../images/rect_icon07.png" id="img42"></div>
-        <div><img src="../images/rect_icon07.png" id="img43"></div>
-        <div><img src="../images/rect_icon07.png" id="img44"></div>
-        <div><img src="../images/rect_icon07.png" id="img45"></div>
-        <div><img src="../images/rect_icon07.png" id="img46"></div>
-        <div><img src="../images/rect_icon07.png" id="img47"></div>
-        <div><img src="../images/rect_icon07.png" id="img48"></div>
-        <div><img src="../images/rect_icon07.png" id="img49"></div>
-        <div><img src="../images/rect_icon07.png" id="img50"></div>
-        <div><img src="../images/rect_icon07.png" id="img51"></div>
-        <div><img src="../images/rect_icon07.png" id="img52"></div>
-        <div><img src="../images/rect_icon07.png" id="img53"></div>
-        <div><img src="../images/rect_icon07.png" id="img54"></div>
-        <div><img src="../images/rect_icon07.png" id="img55"></div>
-        <div><img src="../images/rect_icon07.png" id="img56"></div>
-        <div><img src="../images/rect_icon07.png" id="img57"></div>
-        <div><img src="../images/rect_icon07.png" id="img58"></div>
-        <div><img src="../images/rect_icon07.png" id="img59"></div>
-        <div><img src="../images/rect_icon07.png" id="img60"></div>
-        <div><img src="../images/rect_icon07.png" id="img61"></div>
-        <div><img src="../images/rect_icon07.png" id="img62"></div>
-        <div><img src="../images/rect_icon07.png" id="img63"></div>
-        <div><img src="../images/rect_icon07.png" id="img64"></div>
-        <div><img src="../images/rect_icon07.png" id="img65"></div>
-        <div><img src="../images/rect_icon07.png" id="img66"></div>
-        <div><img src="../images/rect_icon07.png" id="img67"></div>
-        <div><img src="../images/rect_icon07.png" id="img68"></div>
-        <div><img src="../images/rect_icon07.png" id="img69"></div>
-        <div><img src="../images/rect_icon07.png" id="img70"></div>
-        <div><img src="../images/rect_icon07.png" id="img71"></div>
-        <div><img src="../images/rect_icon07.png" id="img72"></div>
-        <div><img src="../images/rect_icon07.png" id="img73"></div>
-        <div><img src="../images/rect_icon07.png" id="img74"></div>
-        <div><img src="../images/rect_icon07.png" id="img75"></div>
-        <div><img src="../images/rect_icon07.png" id="img76"></div>
-        <div><img src="../images/rect_icon07.png" id="img77"></div>
-        <div><img src="../images/rect_icon07.png" id="img78"></div>
-        <div><img src="../images/rect_icon07.png" id="img79"></div>
-        <div><img src="../images/rect_icon07.png" id="img80"></div>
-        <div><img src="../images/rect_icon07.png" id="img81"></div>
-        <div><img src="../images/rect_icon07.png" id="img82"></div>
-        <div><img src="../images/rect_icon07.png" id="img83"></div>
-        <div><img src="../images/rect_icon07.png" id="img84"></div>
-        <div><img src="../images/rect_icon07.png" id="img85"></div>
-        <div><img src="../images/rect_icon07.png" id="img86"></div>
-        <div><img src="../images/rect_icon07.png" id="img87"></div>
-        <div><img src="../images/rect_icon07.png" id="img88"></div>
-        <div><img src="../images/rect_icon07.png" id="img89"></div>
-        <div><img src="../images/rect_icon07.png" id="img90"></div>
-        <div><img src="../images/rect_icon07.png" id="img91"></div>
-        <div><img src="../images/rect_icon07.png" id="img92"></div>
-        <div><img src="../images/rect_icon07.png" id="img93"></div>
-        <div><img src="../images/rect_icon07.png" id="img94"></div>
-        <div><img src="../images/rect_icon07.png" id="img95"></div>
-        <div><img src="../images/rect_icon07.png" id="img96"></div>
-        <div><img src="../images/rect_icon07.png" id="img97"></div>
-        <div><img src="../images/rect_icon07.png" id="img98"></div>
-        <div><img src="../images/rect_icon07.png" id="img99"></div>
-        <div><img src="../images/rect_icon07.png" id="img100"></div> -->
-    </div>
+    <textarea style="width:770px; height: 500px; margin-top: 300px;margin-right: auto; margin-left: auto; display: block;">
+<div id="main">
+	<div id="one" class="number">1</div>
+	<div id="two" class="number">2</div>
+	<div id="three" class="number">3</div>
+	<div id="four" class="number">4</div>
+	<div id="five" class="number">5</div>
+	<div style="clear:both;"></div>
+	<hr>
 
-    
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel four five"></div>
+	<div class="pixel four five"></div>
+	<div class="pixel"></div>
+	<div class="pixel one"></div>
+	<div class="pixel one"></div>
+	<div class="pixel four"></div>
+	<div class="pixel two three four"></div>
+	<div class="pixel two three"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel one two three four five"></div>
+	<div class="pixel one two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two four four"></div>
+	<div class="pixel two four four"></div>
+	<div class="pixel four"></div>
+	<div class="pixel one four"></div>
+	<div class="pixel one four"></div>
+	<div class="pixel four"></div>
+	<div class="pixel three four five"></div>
+	<div class="pixel three four five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel one two three five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three four five"></div>
+	<div class="pixel two three five"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div class="pixel"></div>
+	<div style="clear:both;"></div>
+
+</div>		
+	</textarea>
 </body>
+
 </html>

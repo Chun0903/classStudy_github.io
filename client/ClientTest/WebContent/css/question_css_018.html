@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            width: 600px;
+            height: 600px;
+            background-color: #8FD1D8;
+            margin: auto;
+        }
+
+        h1 {
+            font-variant: small-caps;
+            font-size: 50px;
+            color: #4E4E4E;
+            /* background-image: url(../images/); */
+        }
+
+        #tape {
+            width: 570px;
+            height: 360px;
+            background-image: url(../images/tape.png);
+        } 
+
+        #left {
+            width: 80px;
+            height: 80px;
+            /* background-image: url(../images/tapehole.png); */
+            transform: translate(125px, 120px);
+        }
+
+        #middle {
+            width: 132px;
+            height: 63px;
+            /* background-image: url(../images/tapeline.png); */
+            transform: translate(218px, 48px);
+            /* transform: translate(218px, 0px); */
+            overflow: hidden;
+        }
+
+        #right {
+            width: 80px;
+            height: 80px;
+            /* background-image: url(../images/tapehole.png); */
+            transform: translate(362px, -23px);
+        }
+
+        #left > img, #right > img {
+            /* border: 10px solid black; */
+            animation-name: keyLR;
+            animation-timing-function: linear;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        } 
+
+        @keyframes keyLR {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #middle > img {
+            animation-name: keyM;
+            animation-timing-function: linear;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes keyM {
+            from { transform: translate(0px,0px); }
+            to { transform: translate(-40px,0px); }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <h1><i class="fas fa-headphones-alt"></i>Music</h1>
+
+    <div id="tape">
+        <div id="left"><img src="../images/tapehole.png"></div>
+        <div id="middle"><img src="../images/tapeline.png"></div>
+        <div id="right"><img src="../images/tapehole.png"></div>
+    </div>
+
+    
+
+
+</body>
+</html>
