@@ -156,6 +156,7 @@ var hong = {
 
 //동?
 console.log(hong.address);
+// @ts-ignore
 console.log(hong.address.dong);
 
 console.log(hong["address"]);
