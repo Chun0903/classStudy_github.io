@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            width: 600px;
+            margin: auto;
+        }
+
+        table {
+            border: 1px solid gray;
+            border-collapse: collapse;
+            width: 600px;
+            height: 150px;
+            font-size: 17px;
+        }
+
+        td {
+            border: 1px solid gray;
+        }
+
+        td:nth-child(1){
+            width: 120px;
+            background-color: #eee;
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        td:nth-child(2){
+            padding-left: 10px;
+        }
+
+        td:nth-child(2) input{
+            height: 25px;
+            outline: none;
+            width: 450px;
+            font-size: 17px;
+            font-weight: bolder;
+        }
+
+        tr:nth-child(1) input:nth-child(1) {
+            width: 60px;
+        }
+
+        tr:nth-child(1) input:nth-child(2) {
+            background-color: #eee;
+            border: 1px solid gray;
+            width: 140px;
+            font-weight: bolder;
+            height: 30px;
+            font-size: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>우편 번호 검색</h1>
+
+    <table>
+        <tr>
+            <td>우편번호</td>
+            <td><input type="text" name="txt1"> 
+                <input type="button" name="btn" value="우편번호검사하기"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="txt2"> </td>
+        </tr>
+        <tr>
+            <td>상세주소</td>
+            <td><input type="text" name="txt3"> </td>
+        </tr>
+    </table>
+
+    <script>
+
+        var btn = document.all.btn;
+        var txt1 = document.all.txt1;
+        var txt2 = document.all.txt2;
+
+        btn.onclick = function(){
+            child = window.open("qeustion004_child.html", "check", "width=300, height= 200");
+        };
+
+
+    </script>
+
+
+</body>
+</html>

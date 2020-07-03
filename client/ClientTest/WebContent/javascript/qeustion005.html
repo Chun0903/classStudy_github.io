@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <form name="form1">
+        <img src="../images/img01.jpg" name="img1" data-index="0">
+        <img src="../images/img02.jpg" name="img2" data-index="1">
+        <img src="../images/img03.jpg" name="img3" data-index="2">
+        <input type="text" name="lavel" value="" id="txt">
+
+    </form>
+
+    <script>
+
+        var lavel = document.all.lavel;
+
+
+            var list = [
+                ["img01.jpg", "img04.jpg", 
+                    "'스키'타는 사람이 '당근'으로 변했습니다."],
+                ["img02.jpg", "img05.jpg",
+                    "'해바라기'가 '피망'으로 변했습니다."],
+                ["img03.jpg", "img06.jpg",
+                    "'나무'가 '개'가 됐습니다."]
+            ];
+
+            for (var i=1; i<=5; i++){
+                var img = document.images["img" + i];
+                img.onmouseover = function() {
+                    event.srcElement.src = "../images/" + list[event.srcElement.dataset["index"]][1]
+
+                    lavel.value = list[event.srcElement.dataset["index"]][2]
+                    
+                }
+                img.onmouseout = function() {
+                    event.srcElement.src = "../images/" + list[event.srcElement.dataset["index"]][0]
+                }
+            }
+
+    </script>
+</body>
+</html>

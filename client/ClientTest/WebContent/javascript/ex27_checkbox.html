@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>회원 가입</h1>
+
+    <h2>이용 약관</h2>
+
+    <div style="border: 1px solid black; width: 500px; height: 150px; overflow: auto; padding: 20px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A explicabo quia veniam labore nostrum quasi ratione repellat unde assumenda architecto reprehenderit harum iusto, dolorem voluptates vel ipsa aperiam error. Voluptas consequatur at temporibus voluptate, aliquid vero consequuntur voluptatibus, quam porro quod repudiandae similique quibusdam. Error rem nihil est voluptas maiores facere voluptatum molestias dolor accusantium, exercitationem iure quis ea eligendi libero at perspiciatis expedita ab tenetur asperiores quo voluptatibus, hic odit incidunt iusto. Beatae optio officia quaerat exercitationem maxime voluptatibus illum ducimus, praesentium debitis soluta, voluptates totam? Laboriosam culpa deserunt consectetur laborum tempore. Ut, at reprehenderit! Rerum eveniet eum, accusantium, laudantium odit odio amet voluptas suscipit molestias ad dolore consequuntur modi libero excepturi perspiciatis reiciendis sapiente possimus soluta magnam necessitatibus sit quis, ipsam earum sint. Animi, expedita. Sapiente mollitia blanditiis vel nostrum quam aut, eos ratione perferendis consequuntur neque natus facere sunt corporis libero vitae sequi quibusdam suscipit saepe architecto autem error! Numquam porro voluptas ab reiciendis optio ipsam nobis et dolorum vitae quaerat magni laudantium quibusdam eius, minus possimus, nam dolores doloremque! Voluptatibus ab, ad sapiente totam aspernatur repellat. Debitis obcaecati officia enim earum nam expedita libero quisquam nulla eaque exercitationem veritatis vel error numquam quidem eveniet, molestiae eum amet, ea rem dolorum natus assumenda ipsum provident. Cumque nesciunt modi ullam, sunt distinctio cum esse minus, exercitationem voluptatibus velit odio rerum aperiam deleniti optio quis accusantium dolores dolorum aut fuga sequi architecto. Asperiores cum reiciendis mollitia eveniet excepturi nesciunt voluptates tenetur ab, maxime sed ipsam ducimus unde veniam aliquid, pariatur esse cumque iusto! Autem nihil illum rerum, atque ea dolorem culpa. Omnis distinctio iure sit molestias iusto dicta adipisci eaque nulla possimus unde mollitia illo ea, voluptas ipsum minima veniam officia repellat ab dolorum nemo. Ab ad minus nihil inventore nemo nulla quia incidunt, dicta eveniet sunt fugiat perferendis?</div>
+
+    <hr>
+
+    <input type="checkbox" name="cbAgree" id="cbAgree">
+    <label for="cbAgree">약관에 동의합니다.</label>
+    <hr>
+    <input type="button" value="다음 단계로"
+        onclick="location.href='nex.html';"
+        name="btnNext" disabled>
+
+
+    <h1>주소록</h1>
+
+    <table id="tbl1" border width = "500">
+        <tr>
+            <th><input type="checkbox" name="cbAll"></th>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+            <th>나이</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="cb"></td>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>서울시 강남구</td>
+            <td>24</td>
+        </tr>
+    </table>
+
+    <script>
+
+        var cbAgree = document.all.cbAgree;
+        var btnNext = document.all.btnNext;
+
+        //컨트롤의 값의 변화가 생기면 발생
+        cbAgree.onchange = function() {
+            // console.log(cbAgree.checked);
+            if (cbAgree.checked){
+                btnNext.disabled = false;
+            } else {
+                btnNext.disabled = true;
+            }
+        };
+
+        var cbAll = document.all.cbAll; //일괄 체크박스
+        var cb = document.all.cb; //name이 동일한 태그를 BOM으로 검색하면 자동으로 배열 반환
+        // console.log(cb);
+
+        cbAll.onchange = function(){
+
+            // if (cbAll.checked){
+
+            //     for(var i=0; i<cb.length; i++) {
+            //         cb[i].checked = true;
+            //     }
+
+            // }else{
+
+            //     for(var i=0; i<cb.length; i++) {
+            //         cb[i].checked = false;
+            //     }
+
+            // }
+
+                for(var i=0; i<cb.length; i++) {
+                    cb[i].checked = cbAll.checked;
+                }
+
+
+        }
+        
+
+
+    </script>
+
+</body>
+</html>

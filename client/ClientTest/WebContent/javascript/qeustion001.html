@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 300px;
+            margin: auto;
+            padding-top: 250px;
+            padding-bottom: 200px;
+            text-align: center;
+        }
+        #txtnum {
+            border: none;
+            width: 200px;
+            height: 200px;
+            font-size: 180px;
+            font-weight: bolder;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <input type="text" value="00" name="txtnum" id="txtnum" disabled>
+    <img src="../images/0.png" name="imgnum1">
+    <img src="../images/0.png" name="imgnum2">
+
+    <script>
+
+        var txtnum = document.all.txtnum;
+        var imgnum1 = document.images["imgnum1"]
+        var imgnum2 = document.images["imgnum2"]
+
+        var m = 1;
+        var n = 1;
+        var l = 1;
+
+        window.onclick = function() {
+
+            if(l<10){
+                txtnum.value = "0" +l;
+            }else {
+                txtnum.value = l;
+            }
+            l++
+            if (l>99) l = 0;
+
+
+
+            if(n == 0){
+                imgnum1.src = "../images/" + m + ".png";
+                m++;
+                if (m>9) n = 0;
+            }
+
+            imgnum2.src = "../images/" + n + ".png";
+            n++;
+            if (n>9) n = 0;
+
+            
+        }
+
+
+    </script>
+
+
+</body>
+</html>

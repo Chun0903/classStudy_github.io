@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body {
+            width: 600px;
+            margin: auto;
+            padding: 50px;
+            
+        }
+        table {
+            border: 1px solid gray;
+            width: 600px;
+            height: 240px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        td {
+            border: 1px solid gray;
+        }
+        
+        #index {
+            width: 160px;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+
+        a {
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #eee;
+            width: 150px;
+            height: 30px;
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <table>
+        <tr>
+            <td name = "index" id = "index">
+                <a href="#" data-no="1">강아지1</a>
+                <a href="#" data-no="2">강아지2</a>
+                <a href="#" data-no="3">강아지3</a>
+                <a href="#" data-no="4">강아지4</a>
+                <a href="#" data-no="5">강아지5</a>
+            </td>
+            <td> <img src="../images/dog01.jpg" name = "img"></td>
+        </tr>
+    </table>
+
+    <script>
+
+
+        // window.onload = function() {
+
+            var list = document.links;
+
+                for (var i=0; i<list.length; i++) {
+                
+                list[i].onmouseover = function() {
+                    
+                    document.images["img"].src = "../images/dog0" + event.srcElement.dataset["no"] + ".jpg";
+
+                };
+
+                list[i].onclick = function() {
+                    window.open("../images/dog0" + event.srcElement.dataset["no"] + "_big.jpg", "big", "width=1400, height=1050");
+                };
+
+            }
+
+        // };
+
+    </script>
+
+</body>
+</html>
