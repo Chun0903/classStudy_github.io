@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid #444;
+            width: 570px;
+            height: 170px;
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        span {
+            font-size: 100px; 
+            font-weight: bolder;
+            display: inline-block;
+            margin-top: -20px;
+            margin-right: 10px;
+        }
+
+
+
+        input[type =text ] {
+            /* padding-top: 10px; */
+            border: none;
+            margin-top: 20px;
+            width: 130px;
+            font-size: 120px;
+            font-weight: bolder;
+            outline: none;
+            color: #444;
+        }
+
+        /* input[type = button] {
+            width: 130px;
+            height: 50px;
+            font-size: 15px;
+            font-weight: bolder;
+            margin-top: 20px;
+            outline: none;
+        } */
+
+        button {
+            border: 1px solid rgb(167, 167, 167);
+            width: 130px;
+            height: 50px;
+            font-size: 15px;
+            font-weight: bolder;
+            outline: none;
+            color: #444;
+        }
+
+        button:enabled {
+	    	background-color: white;
+	    }
+	    button:disabled {
+	    	background-color: #eee;	
+            cursor: not-allowed;
+	    }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div name="box">
+        <input type="text" name="mm" value="00"><span>:</span>
+        <input type="text" name="ss" value="00"><span>:</span>
+        <input type="text" name="ms" value="00">
+    </div>
+    <!-- <input type="button" name="start" value="시작" >
+    <input type="button" name="stop" value="멈춤" disabled>
+    <input type="button" name="end" value="멈춤" disabled> -->
+
+    <button name="start">시작</button>
+    <button name="stop" disabled>멈춤</button>
+    <button name="end" disabled>멈춤</button>
+
+    <script>
+
+        var mm = document.all.mm;
+        var ss = document.all.ss;
+        var ms = document.all.ms;
+        
+        var start = document.all.start;
+        var stop = document.all.stop;
+        var end = document.all.end;
+
+        var timer = 0;
+        var n = 0;
+        var s = 1;
+        var m = 1;
+
+        start.onclick = function(){
+            start.disabled = true;
+            stop.disabled = false;
+            end.disabled = false;
+
+            timer = setInterval(function(){
+                if(n<10){
+                    ms.value = "0" +n;
+                }else {
+                    ms.value = n;
+                }
+                n++;
+                if (n == 100) n=0;
+
+                if(n == 99) {
+                    if(s<10){
+                        ss.value = "0" + s;
+                    }else {
+                        ss.value =s;
+                    }
+                    s++;
+                    if (s == 60) s=0;
+                }
+
+                if(s == 1 && n ==0) {
+
+                    if (m<10){
+                        mm.value = "0" + m;
+                    }else{
+                        mm.value = m;
+                    }
+                    m++;
+                    if (m == 60) m=0;
+                }
+            },10);
+        }
+
+        stop.onclick = function(){
+            start.disabled = false;
+            stop.disabled = true;
+            end.disabled = false;
+
+            clearInterval(timer);
+        }
+
+        end.onclick = function(){
+            start.disabled = false;
+            stop.disabled = true;
+            end.disabled = true;
+
+            clearInterval(timer);
+            timer = 0;
+            n =0;
+            s =0;
+            m =0;
+            ms.value = "00";
+            ss.value = "00";
+            mm.value = "00";
+            
+        }
+        
+
+
+    </script>
+
+
+</body>
+</html>

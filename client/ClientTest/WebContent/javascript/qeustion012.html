@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="width: 240px; margin: auto;">
+    
+    <input type="text" name="count" style="width: 235px; height: 235px; font-size: 200px; font-weight: bolder; color: #444; text-align: center; border: none; outline: none; margin-top: 100px;">
+
+    <script>
+
+        var count = document.all.count;
+        var timer = 0;
+        var n = 10;
+
+        window.onload = function() {
+
+            timer = setInterval(function(){
+                count.value = n;
+                n--;  
+                if(n == -1) {
+                    clearInterval(timer);
+                    window.location.href="https://www.google.co.kr/";
+                }
+            },1000);
+
+        }
+
+        window.onkeydown =function(event){
+
+            if(event.keyCode == 27){
+
+                clearInterval(timer);
+                document.body.bgColor = "tomato";
+                
+
+            }
+
+        };
+
+
+    </script>
+
+
+</body>
+</html>

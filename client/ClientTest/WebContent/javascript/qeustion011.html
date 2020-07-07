@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            width: 600px;
+            margin: auto;
+        }
+
+        table {
+            border: 1px solid black;
+            width: 600px;
+            height: 430px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        td:nth-child(1), td:nth-child(3) {
+            width: 210px;
+        } 
+
+        span {
+            font-weight: bolder;
+            display: block;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            /* float: left; */
+            border: 1px solid black;
+            width: 150px;
+            height: 340px;
+            outline: none;
+        }
+
+        input {
+            display: block;
+            width: 150px;
+            height: 35px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+
+        option {
+            font-size: 17px;
+            font-weight: bolder;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form name="form1">
+        <table>
+            <tr>
+                <td><span>차단된 친구</span> 
+                    <select name="leftList" size="15">
+                        <option value="1">권예진</option>
+                        <option value="2">권준혁</option>
+                        <option value="3">김동식</option>
+                        <option value="4">김세진</option>
+                        <option value="5">김여정</option>
+                        <option value="6">노형준</option>
+                        <option value="7">박민선</option>
+                        <option value="8">백강현</option>
+                        <option value="9">변기현</option>
+                    </select></td>
+                <td><input type="button" name="add" value="Add ▷">
+                    <input type="button" name="remove" value="◁ Remove">
+                    <input type="button" name="addAll" value="Add All ▷ ▷">
+                    <input type="button" name="removeAll" value="◁ ◁ Remove All">
+                </td>
+                <td><span>허용된 친구</span> 
+                    <select name="rightList" size="21"></select></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+
+        var leftList = document.form1.leftList;
+        var rightList = document.form1.rightList;
+
+        var add = document.form1.add;
+        var remove = document.form1.remove;
+        var addAll = document.form1.addAll;
+        var removeAll = document.form1.removeAll;
+
+        add.onclick= function() {
+            var selOption = leftList.options[leftList.selectedIndex];
+            
+            rightList.options.add( new Option(selOption.text, selOption.value));
+
+            leftList.options.remove(leftList.selectedIndex);
+        }
+
+        remove.onclick = function() {
+            var selOption = rightList.options[rightList.selectedIndex];
+            
+            leftList.options.add( new Option(selOption.text, selOption.value));
+            rightList.options.remove(rightList.selectedIndex);
+        }
+
+        addAll.onclick = function() {
+            for(i=0; i<leftList.options.length; i++){
+                rightList.options.add( new Option(leftList.options[i].text,leftList.options[i].value));
+            }
+
+            for(i=leftList.options.length-1; i>=0; i--){
+                leftList.options.remove(i);
+            }
+
+        }
+
+        removeAll.onclick = function() {
+            for(i=0; i<rightList.options.length; i++){
+                leftList.options.add( new Option(rightList.options[i].text,rightList.options[i].value));
+            }
+
+            for(i=rightList.options.length-1; i>=0; i--){
+                rightList.options.remove(i);
+            }
+
+        }
+
+
+    </script>
+    
+</body>
+</html>

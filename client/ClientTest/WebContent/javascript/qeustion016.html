@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #timer {
+            border: 1px solid gray;
+            width: 640px;
+            /* margin: 50px auto 20px auto; */
+            padding: 25px;
+        }
+        #timer:after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        #timer img, #timer span {
+            float: left;
+            font-size: 7em;
+        }
+        #timer img {
+            width: 95px;
+            height: 139px;
+            border: 0px;
+            outline: none;
+        }
+        #timer span {
+            margin-top: -10px;
+        }
+
+        button {
+            width: 130px;
+            /* margin: 20px auto; */
+            /* text-align: center; */
+            margin-top: 20px;
+        }
+        button {
+            border: 1px solid #aaa;
+            background-color: white;
+            /* width: 30%; */
+            height: 50px;
+            outline: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="timer">
+
+            <img name="img1" src="../images/0.png">
+            <img name="img2" src="../images/0.png">
+            <span>:</span>
+            <img name="img3" src="../images/0.png">
+            <img name="img4" src="../images/0.png">
+            <span>:</span>
+            <img name="img5" src="../images/0.png">
+            <img name="img6" src="../images/0.png">
+
+    </div>
+
+    <button name="start">시작</button>
+    <button name="stop" disabled>멈춤</button>
+    <button name="end" disabled>멈춤</button>
+
+    <script>
+
+        var img1 = document.all.img1;
+        var img2 = document.all.img2;
+        var img3 = document.all.img3;
+        var img4 = document.all.img4;
+        var img5 = document.all.img5;
+        var img6 = document.all.img6;
+        
+        var start = document.all.start;
+        var stop = document.all.stop;
+        var end = document.all.end;
+
+        var timer = 0;
+        var i1 = 0;
+        var i2 = 0;
+        var i3 = 0;
+        var i4 = 0;
+        var i5 = 0;
+        var i6 = 0;
+
+
+        start.onclick = function(){
+            start.disabled = true;
+            stop.disabled = false;
+            end.disabled = false;
+
+            timer = setInterval(function(){
+
+                img6.src = "../images/" + i6 + ".png";
+                i6++;
+                if (i6 == 10) i6=0;
+
+                if(i6 == 1) {
+                    img5.src = "../images/" + i5 + ".png";
+                    i5++;
+                    if (i5 == 10) i5=0;
+                }
+
+                if(i5 == 1 && i6 == 1){
+                    img4.src = "../images/" + i4 + ".png";
+                    i4++;
+                    if (i4 == 10) i4=0;
+                }
+
+                if(i4 == 1 && i5 == 1 && i6 == 1){
+                    img3.src = "../images/" + i3 + ".png";
+                    i3++;
+                    if (i3 == 6) i3=0;
+                }
+
+                if(i3 == 1 && i4 == 1 && i5 == 1 && i6 == 1){
+                    img2.src = "../images/" + i2 + ".png";
+                    i2++;
+                    if (i2 == 10) i2=0;
+                }
+
+                if(i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1 && i6 == 1){
+                    img1.src = "../images/" + i1 + ".png";
+                    i1++;
+                    if (i1 == 10) i1=0;
+                }
+
+            },10);
+        
+
+        }
+
+        stop.onclick = function(){
+            start.disabled = false;
+            stop.disabled = true;
+            end.disabled = false;
+
+            clearInterval(timer);
+        }
+
+        end.onclick = function(){
+            start.disabled = false;
+            stop.disabled = true;
+            end.disabled = true;
+
+            clearInterval(timer);
+            timer = 0;
+            i1 = 0;
+            i2 = 0;
+            i3 = 0;
+            i4 = 0;
+            i5 = 0;
+            i6 = 0;
+
+            img1.src = "../images/" + i0 + ".png";
+            img2.src = "../images/" + i0 + ".png";
+            img3.src = "../images/" + i0 + ".png";
+            img4.src = "../images/" + i0 + ".png";
+            img5.src = "../images/" + i0 + ".png";
+            img6.src = "../images/" + i0 + ".png";
+            
+        }
+        
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 { border: 1px solid gray; width: 800px; height:180px; }
+        img { margin:  20px;}
+    </style>
+</head>
+<body>
+
+    <div id="box1"></div>
+    
+    <script>
+
+    var box1 = document.getElementById("box1");
+    
+    window.onkeydown = function() { 
+
+        var temp = "";
+    
+        console.log(event.keyCode);
+        
+
+    for(var i=48; i<58; i++){
+        if (event.keyCode == i) {
+            var j = i - 48;
+            temp += "<img src = '../images/"+ j +".png'>" 
+            box1.innerHTML += temp;
+        }
+    }
+
+    for(var i=96; i<106; i++){
+        if (event.keyCode == i) {
+            var j = i - 96;
+            temp += "<img src = '../images/"+ j +".png'>" 
+            box1.innerHTML += temp;
+        }
+    }
+
+    }
+
+    </script>
+
+
+</body>
+</html>

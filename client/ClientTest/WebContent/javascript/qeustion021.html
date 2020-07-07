@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    fieldset {
+        width: 450px;
+        height: 250px;
+        font-size: 18px;
+        font-weight: bolder;
+        padding-top: 20px;
+    }
+
+    fieldset div{
+        margin: 0px 0px 10px 30px;
+
+    }
+
+    fieldset input[type = "text"]  {
+        width: 220px;
+        height: 30px;
+        outline: none;
+    }
+
+    #textAge {
+        font-size: 18px;
+        font-weight: bolder;
+        outline: none;
+    }
+
+    #plus {
+        border: 1px solid gray;
+        width: 100px;
+        height: 40px;
+        font-size: 17px;
+        font-weight: bolder;
+        margin: 10px 0px 0px 30px;
+        outline: none;
+    }
+
+    #tbl1 {
+        border: 1px solid gray;
+        border-collapse: collapse;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+
+    #tbl1 th , #tbl1 td{
+        border: 1px solid gray;
+        height: 40px;
+    }
+
+    #tbl1 th {
+        background-color: #eee;
+    }
+
+    th:nth-child(1) {
+        width: 80px;
+    }
+    th:nth-child(2) {
+        width: 110px;
+    }
+    th:nth-child(3) {
+        width: 80px;
+    }
+    th:nth-child(4) {
+        width: 180px;
+    }
+    th:nth-child(5) {
+        width: 300px;
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+    
+    <fieldset>
+        <legend>입력 항목</legend>
+        <div>이름 : <input type="text" id="textName"></div>
+        <div>나이 : <select id="textAge"></select></div>
+        <div>성별 : <input type="radio" id="man" name="sex" checked> 
+                    <label for="man">남자</label> 
+                    <input type="radio" id="wom" name="sex">
+                    <label for="wom">여자</label></div>
+        <div>주소 : <input type="text" id="address"></div>
+
+        <input type="button" id = "plus" value="추가하기">
+    </fieldset>
+
+    <table id="tbl1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1">
+            <tr>
+                <td colspan="5">등록된 항목이 없습니다.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+
+        var plus = document.getElementById("plus");
+
+        var tbody1 = document.getElementById("tbody1");
+
+        var txtName = document.getElementById("textName");
+        var textAge = document.getElementById("textAge");
+        var man = document.getElementById("man");
+        var wom = document.getElementById("woms");
+        var address = document.getElementById("address");
+        var n = 1;
+
+
+        for (var i=20; i<=60; i++) {
+            textAge.innerHTML += "<option value = '" + i + "'>" + i+ "</option>";
+        }
+
+        plus.onclick = function(){
+
+            if(n = 1) {
+                tbody1.innerHTML ="";
+            }
+
+            if(txtName.value == "") {
+                txtName.focus();
+				return;
+            }
+
+            if(address.value == "") {
+                address.focus();
+				return;
+            }
+
+            var temp = ""
+
+                
+            temp += "<tr>"
+            temp += "<td>"
+            temp += n
+            temp += "</td>"
+            temp += "<td>"
+            temp += txtName.value
+            temp += "</td>"
+            temp += "<td>"
+            temp += textAge.value
+            temp += "</td>"
+            temp += "<td>"
+            if(man){
+                temp += "<img src = '../images/gender_m.png'>"
+            }
+            if(wom){
+                temp += "<img src = '../images/gender_f.png'>"
+            }
+            temp += "</td>"
+            temp += "<td>"
+            temp += address.value
+            temp += "</td>"
+            temp += "</tr>"
+
+            tbody1.innerHTML += temp;
+            
+            txtName.value = "";
+            textAge.value = "20";
+            address.value = "";
+            n++;
+
+        }
+
+
+    </script>
+
+</body>
+</html>
