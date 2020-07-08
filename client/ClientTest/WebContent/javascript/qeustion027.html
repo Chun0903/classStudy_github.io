@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .box {
+            /* border: 1px solid black; */
+            width: 150px;
+            height: 150px;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    
+    <script>
+
+        window.addEventListener("mousedown", function() {
+
+            var box = document.createElement("div");
+            box.className = "box";
+
+            var img1 = document.createElement("img");
+            img1.setAttribute("src", "../images/face03.png");
+
+            box.appendChild(img1);
+
+            document.body.appendChild(box);
+
+            box.style.left = event.clientX - 75 + "px";
+            box.style.top = event.clientY - 75 + "px";
+
+        });
+
+    </script>
+
+
+</body>
+</html>

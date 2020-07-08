@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #face {
+			position: absolute;
+			left: 200px;
+			top: 200px;
+		}
+
+    </style>
+</head>
+<body style="padding-top: 200px;">
+    
+    <img src="../images/face10.png" id="face">;
+
+    <script>
+
+        var face = document.getElementById("face");
+        var distance = 64;
+
+        window.onmouseover = function(){
+            if(event.clientX > parseInt(getComputedStyle(face)["left"] )
+                    && event.clientX <= parseInt(getComputedStyle(face)["left"]) + 64){
+
+                face.style.left = parseInt(getComputedStyle(face)["left"]) + distance + "px";
+
+            } else if(event.clientX > parseInt(getComputedStyle(face)["left"]) + 64
+                        && event.clientX <= parseInt(getComputedStyle(face)["left"]) + 128){
+
+                face.style.left = parseInt(getComputedStyle(face)["left"]) - distance + "px";
+
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
