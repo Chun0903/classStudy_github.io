@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+	/* .main {
+		position: static;
+	} */
+	#cat {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+    #btn1 {
+        transform: translate(0px, 100px);
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="mainHeader">
+		<h1>고양이 움직이기 ver.Path</h1>
+        <div>고양이를 마우스 경로를 따라 움직이시오.</div>
+        
+        <input type="button" value="시작" id="btn1">
+        <img src="../images/catty01.png" id="cat">
+
+    <script>
+
+        var btn1 = document.getElementById("btn1");
+        var cat = document.getElementById("cat");
+        var timer = 0;
+        var pathX = [];
+        var pathY = [];
+        
+        window.onload = function() {
+		
+		cat = document.getElementById("cat");
+
+		btn1.onclick = function() {
+
+			console.log(pathX.length);
+
+			timer = setInterval(function() {
+
+				cat.style.left = pathX[0] - 64 + "px";
+				cat.style.top = pathY[0] - 64 + "px";
+
+				pathX.shift();
+				pathY.shift();
+
+				if (pathX.length == 0) {
+					clearInterval(timer);
+				}
+
+			}, 10);
+				
+		};
+		
+	};
+
+	window.onmousemove = function() {
+
+		if (event.ctrlKey) {
+			pathX.push(event.clientX);
+			pathY.push(event.clientY);
+		}	
+
+	};
+
+
+    </script>
+    
+</body>
+</html>

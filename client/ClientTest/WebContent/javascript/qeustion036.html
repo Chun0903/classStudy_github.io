@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+	.cat {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+    #btn1 {
+        transform: translate(0px, 100px);
+    }
+
+    </style>
+</head>
+<body>
+
+		<h1>이미지 + 연속이동하기</h1>
+        <div>마우스의 움직임을 따라 고양이를 연속적으로 움직이시오.</div>
+        
+        <!-- <img src="../images/catty01.png" id="cat"> -->
+
+        <img src="../images/catty01.png" class="cat" data-no="1">
+        <img src="../images/catty02.png" class="cat" data-no="2">
+        <img src="../images/catty03.png" class="cat" data-no="3">
+        <img src="../images/catty04.png" class="cat" data-no="4">
+        <img src="../images/catty05.png" class="cat" data-no="5">
+        <img src="../images/catty06.png" class="cat" data-no="6">
+        <img src="../images/catty07.png" class="cat" data-no="7">
+        <img src="../images/catty08.png" class="cat" data-no="8">
+        <img src="../images/catty09.png" class="cat" data-no="9">
+        <img src="../images/catty10.png" class="cat" data-no="10">
+        <img src="../images/catty11.png" class="cat" data-no="11">
+        <img src="../images/catty12.png" class="cat" data-no="12">
+        <img src="../images/catty13.png" class="cat" data-no="13">
+        <img src="../images/catty14.png" class="cat" data-no="14">
+        <img src="../images/catty15.png" class="cat" data-no="15">
+        <img src="../images/catty16.png" class="cat" data-no="16">
+        <img src="../images/catty17.png" class="cat" data-no="17">
+        <img src="../images/catty18.png" class="cat" data-no="18">
+        <img src="../images/catty19.png" class="cat" data-no="19">
+        <img src="../images/catty20.png" class="cat" data-no="20">
+        <img src="../images/catty21.png" class="cat" data-no="21">
+
+    <script>
+
+        var cats = document.getElementsByClassName("cat");
+        var pathX = [];
+        var pathY = [];
+
+        window.onload = function() {
+            for (var i=0; i<cats.length; i++) {
+                cats[i].style.zIndex = (cats.length-i);
+            }
+        };
+
+        window.onmousemove = function() {
+            pathX.push(event.clientX);
+            pathY.push(event.clientY);
+
+            if (pathX.length > cats.length) {
+                pathX.shift();
+                pathY.shift();
+            }
+
+            moveCat();
+        };
+
+        function moveCat() {
+
+            for (var i=0; i<cats.length; i++) {
+                if (pathX[i] != null) {
+                    cats[i].style.left = pathX[i] - 64 + "px";
+                    cats[i].style.top = pathY[i] - 64 + "px";
+                    cats[i].style.display = "block";
+                }
+            }
+
+        }
+
+
+
+    </script>
+    
+</body>
+</html>

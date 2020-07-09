@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #tbl1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 900px;
+        }
+        #tbl1 td {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table id="tbl1">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+
+        var tbl1 = document.getElementById("tbl1");
+        var td = document.getElementsByTagName("td");
+        var colors = ["#E6E6E6", "#CDCDCD", "#B4B4B4", "#9B9B9B", "#828282", "#696969", "#505050", "#373737", "#1E1E1E", "#050505"]
+
+        td[0].style.backgroundColor = "#";
+
+        for(var i=0; i<td.length; i++){
+            td[i].onclick = function() {
+                // for(var j=0; j<colors.length; j++){
+                console.log(event.srcElement);
+                // if(event.srcElement.style.backgroundColor == )
+                // event.srcElement.style.backgroundColor = colors[j];
+            }
+        }
+    // }
+
+
+
+    </script>
+
+</body>
+</html>

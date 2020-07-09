@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    body {
+        background-color: rgb(63, 63, 63);
+    }
+
+    #main {
+        color: white;
+        width: 900px;
+        margin: auto;
+    }
+
+    #box {
+        position: absolute;
+        border: 10px solid black;
+        width: 800px;
+        height: 700px;
+        background-color: white;
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+	.cat {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+
+    </style>
+</head>
+<body>
+        <div id="main">
+            <h1>이미지 + 연속이동하기</h1>
+            <div>마우스의 움직임을 따라 고양이를 연속적으로 움직이시오.</div>
+            
+            <!-- <img src="../images/catty01.png" id="cat"> -->
+            <div id="box">
+                <img src="../images/catty01.png" class="cat" >
+                <img src="../images/catty02.png" class="cat" >
+                <img src="../images/catty03.png" class="cat" >
+                <img src="../images/catty04.png" class="cat" >
+                <img src="../images/catty05.png" class="cat" >
+                <img src="../images/catty06.png" class="cat" >
+                <img src="../images/catty07.png" class="cat" >
+                <img src="../images/catty08.png" class="cat" >
+                <img src="../images/catty09.png" class="cat" >
+                <img src="../images/catty10.png" class="cat" >
+                <img src="../images/catty11.png" class="cat" >
+                <img src="../images/catty12.png" class="cat" >
+                <img src="../images/catty13.png" class="cat" >
+                <img src="../images/catty14.png" class="cat" >
+                <img src="../images/catty15.png" class="cat" >
+                <img src="../images/catty16.png" class="cat" >
+                <img src="../images/catty17.png" class="cat" >
+                <img src="../images/catty18.png" class="cat" >
+                <img src="../images/catty19.png" class="cat" >
+                <img src="../images/catty20.png" class="cat" >
+                <img src="../images/catty21.png" class="cat" >
+            </div>
+        </div>
+
+    <script>
+
+        var cats = document.getElementsByClassName("cat");
+        var main = document.getElementById("main");
+        var pathX = [];
+        var pathY = [];
+
+        
+        window.onload = function() {
+            for (var i=0; i<cats.length; i++) {
+                cats[i].style.zIndex = (cats.length-i);
+            }
+        };
+
+        window.onmousemove = function() {
+            pathX.push(event.clientX);
+            pathY.push(event.clientY);
+
+            if (pathX.length > cats.length) {
+                pathX.shift();
+                pathY.shift();
+            }
+
+            for (var i=0; i<cats.length; i++) {
+                if (pathX[i] != null) {
+                    cats[i].style.left = pathX[i] - 65 + "px";
+                    cats[i].style.top = pathY[i] - 205 + "px";
+                    cats[i].style.display = "block";
+                }
+            }
+
+        };
+
+
+
+    </script>
+    
+</body>
+</html>
