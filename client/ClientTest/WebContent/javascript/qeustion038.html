@@ -10,95 +10,116 @@
             border: 1px solid black;
             border-collapse: collapse;
             width: 900px;
+            text-align: center;
         }
         #tbl1 td {
             border: 1px solid black;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
         }
 
     </style>
 </head>
 <body>
 
-    <table id="tbl1">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+	<table id="tbl1">
+		<tr>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+		</tr>
+		<tr>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+		</tr>
+		<tr>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+		</tr>
+		<tr>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+		</tr>
+		<tr>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+			<td class="cell" data-color="255"></td>
+		</tr>
+	</table>
+
 
     <script>
-
-        var tbl1 = document.getElementById("tbl1");
-        var td = document.getElementsByTagName("td");
-        var colors = ["#E6E6E6", "#CDCDCD", "#B4B4B4", "#9B9B9B", "#828282", "#696969", "#505050", "#373737", "#1E1E1E", "#050505"]
-
-        td[0].style.backgroundColor = "#";
-
-        for(var i=0; i<td.length; i++){
-            td[i].onclick = function() {
-                // for(var j=0; j<colors.length; j++){
-                console.log(event.srcElement);
-                // if(event.srcElement.style.backgroundColor == )
-                // event.srcElement.style.backgroundColor = colors[j];
+	
+        var timer = 0;
+        var index = -1;
+        var cell, btn1;
+    
+        window.onload = function() {
+            
+            cell = document.getElementsByClassName("cell");
+            btn1 = document.getElementById("btn1");
+            
+            for (var i=0; i<cell.length; i++) {
+                cell[i].onclick = function() {
+                    if (event.srcElement.nodeName == "TD") {
+    
+                        for (var j=0; j<cell.length; j++) {
+                            cell[j].innerHTML = "";
+                        }
+    
+                        var c = parseInt(event.srcElement.dataset["color"]);
+                        c -= 25;
+                        if (c >= 0) {
+                            event.srcElement.style.backgroundColor = "rgb(" + c + "," + c + "," + c + ")";
+                            event.srcElement.dataset["color"] = c;
+                        } else {
+                            event.srcElement.onclick = null;
+                        }
+                        event.srcElement.innerHTML = "<img src='../images/dog-foot.png'>";
+                    }
+                };
             }
-        }
-    // }
-
-
-
+            
+        };
+        
     </script>
 
 </body>
