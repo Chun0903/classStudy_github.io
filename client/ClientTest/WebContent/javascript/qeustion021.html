@@ -125,7 +125,7 @@
         var txtName = document.getElementById("textName");
         var textAge = document.getElementById("textAge");
         var man = document.getElementById("man");
-        var wom = document.getElementById("woms");
+        var wom = document.getElementById("wom");
         var address = document.getElementById("address");
         var n = 1;
 
@@ -134,11 +134,11 @@
             textAge.innerHTML += "<option value = '" + i + "'>" + i+ "</option>";
         }
 
-        plus.onclick = function(){
-
-            if(n = 1) {
+            if(n == 1) {
                 tbody1.innerHTML ="";
             }
+
+        plus.onclick = function(){
 
             if(txtName.value == "") {
                 txtName.focus();
@@ -151,8 +151,8 @@
             }
 
             var temp = ""
-
-                
+            // var n = 1;
+            // n++;
             temp += "<tr>"
             temp += "<td>"
             temp += n
@@ -164,10 +164,10 @@
             temp += textAge.value
             temp += "</td>"
             temp += "<td>"
-            if(man){
+            if(man.checked){
                 temp += "<img src = '../images/gender_m.png'>"
             }
-            if(wom){
+            else if(wom.checked){
                 temp += "<img src = '../images/gender_f.png'>"
             }
             temp += "</td>"

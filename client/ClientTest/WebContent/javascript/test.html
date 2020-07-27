@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="Author" content="in">
 	<meta name="Generator" content="Visual Studio Code">
-	<title>Question :: javascript 고양이를마우스위치로이동하기3</title>
+	<title>Question :: javascript 발자국+타이머</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" href="basic.css">
 	<style>
@@ -17,75 +17,75 @@
 
 	
 <style>
-	.main {
-		position: static;
+	#tbl1 {
+		border: 1px solid black;
+		border-collapse: collapse;
 	}
-	#cat {
-		position: absolute;
-		left: 0px;
-		top: 0px;
+	#tbl1 td {
+		border: 1px solid black;
+		width: 120px;
+		height: 120px;
 	}
-	
+	#tbl1 td img {
+	  display: block;
+		width: 120px;
+		height: 120px;
+	}
 </style>
 <script>
 	
-	var cat;
-	var pathX = [];
-	var pathY = [];
 	var timer = 0;
-	
+	var index = -1;
+	var cell, btn1;
+	var foot = "left";
+	var c = 255;
+
 	window.onload = function() {
 		
-		cat = document.getElementById("cat");
-
-		document.getElementById("btn1").onclick = function() {
-
-			console.log(pathX.length);
-
-			timer = setInterval(function() {
-
-				cat.style.left = pathX[0] - 64 + "px";
-				cat.style.top = pathY[0] - 64 + "px";
-
-				pathX.shift();
-				pathY.shift();
-
-				if (pathX.length == 0) {
-					clearInterval(timer);
-				}
-
-			}, 10);
-				
+		cell = document.getElementsByClassName("cell");
+		btn1 = document.getElementById("btn1");
+		
+		btn1.onclick = function() {
+		  timer = setInterval(function() {
+		    if (index > -1) {
+		      cell[index].innerHTML = "";
+		      cell[index].style.backgroundColor = "rgb(" + c + ", " + c + ", " + c + ")";
+		      c-=5;
+		      if (c < 0) clearInterval(timer);
+		    }
+    		index++;
+    		if (index == 5) index = 0;
+		    cell[index].innerHTML = "<img src='../images/foot_" + foot + "2.png'>";
+		    if (foot == "left") foot = "right";
+		    else foot = "left";
+		    
+		  }, 300);
 		};
 		
 	};
-
-	window.onmousemove = function() {
-
-		if (event.ctrlKey) {
-			pathX.push(event.clientX);
-			pathY.push(event.clientY);
-		}	
-
-	};
-
 	
 </script>
 <div class="main m800">
 	<div class="mainHeader">
-		<h1>고양이 움직이기 ver. Path</h1>
-		<div>고양이를 마우스 경로를 따라 움직이시오.</div>
-		<u>
-			<li>왼쪽 Ctrl을 누른채 마우스를 움직인다.</li>
-			<li>Ctrl을 떼고, 시작 버튼을 누른다.</li>
-			<li>CSS : transition</li>
-			<li>JavaScript : setInteval() + event.ctrlKey</li>
-		</u>
+		<h1>발자국 ver. 타이머</h1>
+		<div>발자국이 지나간 곳은 점점 흙이 쌓인다.</div>
+		<ul>
+			<li>td.style.backgroundColor = rgb(n1, n2, n3);</li>
+			<li><a href="../images/foot.zip" download>이미지 다운로드</a></li>
+		</ul>
 		<div class="code"></div>
 	</div>
-	
-	<input type="button" value="시작" id="btn1">
-	<img src="../images/catty01.png" id="cat">
+	<input type="button" value="walk" id="btn1">
+	<hr>
+	<table id="tbl1">
+		<tr>
+			<td class="cell"></td>
+			<td class="cell"></td>
+			<td class="cell"></td>
+			<td class="cell"></td>
+			<td class="cell"></td>
+		</tr>
+	</table>
 </div>
 	<script src="basic.js"></script>
 </body>

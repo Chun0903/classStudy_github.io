@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+	<script src="../bootstrap/js/jquery-1.12.4.js"></script>
+	<script src="../bootstrap/js/bootstrap.js"></script>
+
+	<!-- Kakao Map -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6d54ec4ee3d75f5d446f2cddfc3e41d4"></script>
+
+    <!-- 좌표 데이터 -->
+    <script src="data.js"></script>
+
+    <style>
+        
+        #map {
+            width: 100%;
+            height: 450px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div id="container">
+        <h1>Kakao Map <small>부제</small></h1>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        var container = document.getElementById('map');
+
+        var options = { 
+            center: new kakao.maps.LatLng(37.499503, 127.033172), 
+            level: 3
+        };
+
+        var map = new kakao.maps.Map(container, options); 
+     </script>
+
+</body>
+</html>
